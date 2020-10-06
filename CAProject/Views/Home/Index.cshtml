@@ -1,0 +1,115 @@
+﻿@model PaginatedList<Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<style>
+    .product-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .product-item {
+        display: grid;
+        grid-template-areas: "image" "name" "description" "add-to-cart";
+        grid-template-columns: 1fr;
+        grid-template-rows: 3fr 0.5fr 3fr 1fr;
+        align-content: center;
+        justify-content: center;
+        border: 0.1rem solid black;
+        height: 25rem;
+        width: 15rem;
+        margin: 0.5rem;
+        padding-top: 0.5rem;
+    }
+
+    .product-item li {
+        list-style-type: none;
+    }
+
+    .product-item a {
+        text-decoration: none;
+    }
+
+    .product-item a:hover {
+        color: orange;
+    }
+
+    .product-item img {
+        grid-area: image;
+        width: 10rem;
+        height: 10rem;
+        padding: 0.2rem;
+    }
+
+    .product-item h4 {
+        grid-area: name;
+        display: block;
+        text-align: center;
+        width: 10rem;
+        max-height: 3rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .product-item p {
+        grid-area: description;
+        display: block;
+        width: 10rem;
+        max-height: 8rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .product-item button {
+        grid-area: add-to-cart;
+        width: 10rem;
+    }
+
+    .product-item button:hover {
+        background-color: orange;
+        color: black;
+    }
+</style>
+
+<div class="product-container">
+    @foreach (Product product in Model)
+    {
+        <ul class="product-item">
+            <li>
+                <a href="#">
+                    <img src=@product.Image alt=@product.Name />
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <h4>@product.Name</h4>
+                </a>
+            </li>
+            <li>
+                <p>@product.Description</p>
+            </li>
+            <li>
+                <button class="btn btn-primary"><span class="mr-1">$@product.Price</span>Add To Cart</button>
+            </li>
+        </ul>
+    }
+</div>
+
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
