@@ -18,6 +18,7 @@ namespace CAProject.Db
         public void Init()
         {
             AddProducts();
+            AddUsers();
         }
 
         protected void AddProducts()
@@ -53,6 +54,21 @@ namespace CAProject.Db
                 StockCount = 10
             });
 
+            db.SaveChanges();
+        }
+
+        protected void AddUsers()
+        {
+            string[] testers = { "Alice", "Brian" };
+
+            for (int i = 0; i < testers.Length; i++)
+            {
+                db.Users.Add(new User()
+                {
+                    Email = testers[i] + "@test.com",
+                    Password = testers[i]
+                });
+            }
             db.SaveChanges();
         }
     }

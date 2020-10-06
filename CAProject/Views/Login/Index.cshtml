@@ -1,0 +1,67 @@
+﻿@section Scripts
+{
+    <script src="~/js/JavaScript.js"></script>
+}
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div>
+            <h1 class="display-4">Login</h1>
+        </div>
+
+        <form id="form" action="/Login/Auth" method="post">
+            <div class="form-group row">
+                <label for="email" class="col-md-2 col-form-label">Email</label>
+                <div class="col-md-10">
+                    <input type="text" id="email" name="email" value="Alice@test.com" class="form-control">
+                    <div>
+                        <p id="errEmail" class="text-danger">@ViewData["errMsg"] </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="password" class="col-md-2 col-form-label">Password</label>
+                <div class="col-md-10">
+                    <input type="password" id="password" name="password" value="Alice" class="form-control">
+                    <div>
+                        <p id="errPassword" class="text-danger">@ViewData["errMsg"]</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md-2"></div>
+
+                <div class="col-md-10">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+@*Testing to 1)   take in username and password and binded to variables
+    in login/auth*@
+
+@*<form action="/Login/Auth" method="post">
+        <label for="inputUsername">Email</label>
+        <input type="text" name="inputUsername" value="tesingName">
+
+        <label for="inputPassword">Password</label>
+        <input type="password" name="inputPassword">
+
+        <button type="submit">Login</button>
+    </form>*@
+
+
