@@ -235,3 +235,5 @@ C:\Users\Isabe\Downloads\CAProject-master\CAProject-master\CAProject\obj\Debug\n
 C:\Users\Isabe\Downloads\CAProject-master\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.pdb
 C:\Users\Isabe\Downloads\CAProject-master\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.genruntimeconfig.cache
 C:\Users\Isabe\Downloads\CAProject-master\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ProductPg\Index.cshtml.g.cs
+C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
+C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ProductPg\Index.cshtml.g.cs

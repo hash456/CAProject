@@ -33,12 +33,6 @@ namespace CAProject.Models
         public string Platform { get; set; }
 
         [Required]
-        public int NumberSold { get; set; } //by right should be the sum of all sold
-
-        [Required]
-        public int NumberRatings { get; set; } //by right should not be here, shld be the sum of all ratings
-
-        [Required]
-        public double Ratings { get; set; } //0 to 5; by right should be in another table
+        public int NumberSold { get; set; } //by right should be the sum of all sold (maybe we don't show this to user?)
     }
 }

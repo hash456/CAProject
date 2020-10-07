@@ -28,8 +28,6 @@ namespace CAProject.Db
             {
                 Name = ".NET Core Entity Framework",
                 Platform = "Windows 10",
-                Ratings = 4.2,
-                NumberRatings = 1000,
                 NumberSold = 10,
                 Description = "Helping to link the database to web solutions, and also the cause of 99% of my worries. Good for inducing stress when nothing works.",
                 Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/1200px-.NET_Core_Logo.svg.png",
@@ -42,8 +40,6 @@ namespace CAProject.Db
             {
                 Name = ".NET Core",
                 Platform = "Windows 10",
-                Ratings = 4.5,
-                NumberRatings = 1000,
                 NumberSold = 10,
                 Description = "A conducive app to build web applications. So renowned that all teachers use it, so it's the cause of stress for many students.",
                 Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/1200px-.NET_Core_Logo.svg.png",
@@ -62,8 +58,6 @@ namespace CAProject.Db
                     StockCount = 10,
                     Platform = "Windows 10",
                     NumberSold = 20,
-                    NumberRatings = 10,
-                    Ratings = 4.3
                 });
             }
 
@@ -76,8 +70,6 @@ namespace CAProject.Db
                 StockCount = 10,
                 Platform = "Windows 10",
                 NumberSold = 20,
-                NumberRatings = 10,
-                Ratings = 1.2
             });
 
 
@@ -90,8 +82,6 @@ namespace CAProject.Db
                 StockCount = 10,
                 Platform = "Windows 10",
                 NumberSold = 20,
-                NumberRatings = 10,
-                Ratings = 2.3
             });
 
             db.SaveChanges();
@@ -141,6 +131,26 @@ namespace CAProject.Db
                 DateReviewed = "21 October 2019",
                 Rating = 5,
                 ProductId = 2,
+                MainReview = "whewwhew kana kana"
+
+            });
+
+            db.Review.Add(new Review
+            {
+                UserName = "Brian",
+                DateReviewed = "21 October 2019",
+                Rating = 5,
+                ProductId = 3,
+                MainReview = "whewwhew kana kana"
+
+            });
+
+            db.Review.Add(new Review
+            {
+                UserName = "Alice",
+                DateReviewed = "21 October 2019",
+                Rating = 4,
+                ProductId = 3,
                 MainReview = "whewwhew kana kana"
 
             });

@@ -2,6 +2,8 @@
     ViewData["Title"] = "Product Page";
     Product product = (Product)ViewData["product"];
     List<Review> reviews = (List<Review>)ViewData["reviews"];
+    int numReviews = (int)ViewData["numReviews"];
+    double avgScore = (double)ViewData["avgScore"];
 }
 
 <style>
@@ -30,18 +32,13 @@
             <p style="font-size: 20px"><b>@product.Name</b></p>
             <p style="font-size: 14px">
                 Platform: @product.Platform <br>
-                @{
-                    int stars = Convert.ToInt32(Math.Round(product.Ratings));
-                }
-                @for (int i = 0; i < stars; i++)
-                {
-                    <span class="fa fa-star checked"></span>
-                }
-                @for (int i = 0; i < 5 - stars; i++)
-                {
-                    <span class="fa fa-star"></span>
-                }
-                |  @product.NumberRatings Ratings  |  @product.NumberSold Sold
+                <span id="star_one" class=""></span>
+                <span id="star_two" class=""></span>
+                <span id="star_three" class=""></span>
+                <span id="star_four" class=""></span>
+                <span id="star_five" class=""></span>
+                |  @numReviews Ratings  |  @product.NumberSold Sold
+
             </p>
             <hr />
             <p style="font-size: 16px">
@@ -102,6 +99,32 @@
 <br />
 }
 <script>
+    // For average rating only
+    document.getElementById("star_one").className
+    += @avgScore >= 1 ? "fa fa-star checked" : @avgScore >= 0.5
+        ? "fa fa-star-half-o checked"
+        : "fa fa-star";
+
+    document.getElementById("star_two").className
+    += @avgScore >= 2 ? "fa fa-star checked" : @avgScore >= 1.5
+        ? "fa fa-star-half-o checked"
+        : "fa fa-star";
+
+    document.getElementById("star_three").className
+    += @avgScore >= 3 ? "fa fa-star checked" : @avgScore >= 2.5
+        ? "fa fa-star-half-o checked"
+            : "fa fa-star";
+
+    document.getElementById("star_four").className
+    += @avgScore >= 4 ? "fa fa-star checked" : @avgScore >= 3.5
+        ? "fa fa-star-half-o checked"
+            : "fa fa-star";
+
+    document.getElementById("star_five").className
+    += @avgScore >= 5 ? "fa fa-star checked" : @avgScore >= 4.5
+        ? "fa fa-star-half-o checked"
+            : "fa fa-star";
+
     function AddtoCart()
     {
         var quantity = document.getElementById("quantity").value;
@@ -118,7 +141,7 @@
         {
             alert("Item has been added to cart.");
         }
-        
+
     }
 </script>
 
