@@ -6,6 +6,8 @@ using CAProject.Db;
 using CAProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace CAProject.Controllers
 {
@@ -31,9 +33,17 @@ namespace CAProject.Controllers
             else 
             {
                 // session goes here 
+                HttpContext.Session.SetString("LoggedIn", "YES");
                 return RedirectToAction("index", "home");
             }
 
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Login");
         }
     }
 }
