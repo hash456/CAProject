@@ -21,15 +21,13 @@
         grid-template-rows: 3fr 0.5fr 3fr 1fr;
         align-content: center;
         justify-content: center;
+        align-items: center;
+        justify-items: center;
         border: 0.1rem solid black;
         height: 25rem;
-        width: 15rem;
+        width: 20rem;
         margin: 0.5rem;
         padding-top: 0.5rem;
-    }
-
-    .product-item li {
-        list-style-type: none;
     }
 
     .product-item a {
@@ -47,12 +45,12 @@
         padding: 0.2rem;
     }
 
-    .product-item h4 {
+    .product-item h5 {
         grid-area: name;
         display: block;
         text-align: center;
-        width: 10rem;
-        max-height: 3rem;
+        width: 17rem;
+        max-height: 2rem;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -60,8 +58,9 @@
 
     .product-item p {
         grid-area: description;
+        text-align: justify;
         display: block;
-        width: 10rem;
+        width: 17rem;
         max-height: 8rem;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -69,7 +68,8 @@
 
     .product-item button {
         grid-area: add-to-cart;
-        width: 10rem;
+        width: 17rem;
+        max-height: 4rem;
     }
 
     .product-item button:hover {
@@ -81,24 +81,24 @@
 <div class="product-container">
     @foreach (Product product in Model)
     {
-        <ul class="product-item">
-            <li>
+        <div class="product-item">
+            <div>
                 <a href="@Url.Action("Index", "ProductPg", new { productid = product.Id })">
                     <img src=@product.Image alt=@product.Name />
                 </a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <a href="@Url.Action("Index", "ProductPg", new { productid = product.Id })">
-                    <h4>@product.Name</h4>
+                    <h5>@product.Name</h5>
                 </a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <p>@product.Description</p>
-            </li>
-            <li>
+            </div>
+            <div>
                 <button class="btn btn-primary"><span class="mr-1">$@product.Price</span>Add To Cart</button>
-            </li>
-        </ul>
+            </div>
+        </div>
     }
 </div>
 
