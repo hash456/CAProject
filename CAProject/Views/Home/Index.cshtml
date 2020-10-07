@@ -83,12 +83,12 @@
     {
         <ul class="product-item">
             <li>
-                <a href="#">
+                <a href="@Url.Action("Index", "ProductPg", new { productid = product.Id })">
                     <img src=@product.Image alt=@product.Name />
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="@Url.Action("Index", "ProductPg", new { productid = product.Id })">
                     <h4>@product.Name</h4>
                 </a>
             </li>
