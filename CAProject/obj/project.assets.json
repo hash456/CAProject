@@ -7297,19 +7297,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Yau\\.nuget\\packages\\": {}
+    "C:\\Users\\Isabe\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Yau\\Desktop\\MVCCA\\CAProject\\CAProject\\CAProject.csproj",
+      "projectUniqueName": "C:\\Users\\Isabe\\CAProject\\CAProject\\CAProject.csproj",
       "projectName": "CAProject",
-      "projectPath": "C:\\Users\\Yau\\Desktop\\MVCCA\\CAProject\\CAProject\\CAProject.csproj",
-      "packagesPath": "C:\\Users\\Yau\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Yau\\Desktop\\MVCCA\\CAProject\\CAProject\\obj\\",
+      "projectPath": "C:\\Users\\Isabe\\CAProject\\CAProject\\CAProject.csproj",
+      "packagesPath": "C:\\Users\\Isabe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Isabe\\CAProject\\CAProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Yau\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Isabe\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
