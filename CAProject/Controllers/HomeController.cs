@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using CAProject.Models;
 using CAProject.Db;
 using System.Data.Common;
+using Microsoft.AspNetCore.Http;
 
 namespace CAProject.Controllers
 {
@@ -24,7 +25,13 @@ namespace CAProject.Controllers
 
         public async Task<IActionResult> Index(int? pageNumber)
         {
-            int pageSize = 12;
+            int pageSize = 9;
+
+            if (HttpContext.Session.GetString("LoggedIn") != null)
+            {
+                ViewData["DisplayLogout"] = "YES";
+            }
+
             return View(await PaginatedList<Product>.CreateAsync(db.Product,pageNumber ?? 1, pageSize));
         }
 
