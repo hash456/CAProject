@@ -10,7 +10,7 @@ using CAProject.Db;
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace CAProj.Controllers
+namespace CAProject.Controllers
 {
     public class ProductPgController : Controller
     {
