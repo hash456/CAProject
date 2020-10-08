@@ -26,13 +26,7 @@ namespace CAProject.Models
         public double Price { get; set; }
 
         [Required]
-        public int StockCount { get; set; }
-
-        [Required]
         [MaxLength(30)]
         public string Platform { get; set; }
-
-        [Required]
-        public int NumberSold { get; set; } //by right should be the sum of all sold (maybe we don't show this to user?)
     }
 }

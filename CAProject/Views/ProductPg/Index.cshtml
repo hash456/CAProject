@@ -4,6 +4,8 @@
     List<Review> reviews = (List<Review>)ViewData["reviews"];
     int numReviews = (int)ViewData["numReviews"];
     double avgScore = (double)ViewData["avgScore"];
+    int stockCount = (int)ViewData["stockCount"];
+    int numSold = (int)ViewData["numSold"];
 }
 
 <style>
@@ -37,13 +39,13 @@
                 <span id="star_three" class=""></span>
                 <span id="star_four" class=""></span>
                 <span id="star_five" class=""></span>
-                |  @numReviews Ratings  |  @product.NumberSold Sold
+                |  @numReviews Ratings  |  @numSold Sold
 
             </p>
             <hr />
             <p style="font-size: 16px">
                 <b>Price: </b>$@product.Price <br />
-                @if (product.StockCount > 0)
+                @if (stockCount > 0)
                 {
                     <span style="color:forestgreen">Available</span>
                 }
@@ -103,12 +105,12 @@
     document.getElementById("star_one").className
     += @avgScore >= 1 ? "fa fa-star checked" : @avgScore >= 0.5
         ? "fa fa-star-half-o checked"
-        : "fa fa-star";
+            : "fa fa-star";
 
     document.getElementById("star_two").className
     += @avgScore >= 2 ? "fa fa-star checked" : @avgScore >= 1.5
         ? "fa fa-star-half-o checked"
-        : "fa fa-star";
+            : "fa fa-star";
 
     document.getElementById("star_three").className
     += @avgScore >= 3 ? "fa fa-star checked" : @avgScore >= 2.5
@@ -128,7 +130,7 @@
     function AddtoCart()
     {
         var quantity = document.getElementById("quantity").value;
-        var stockcount = @product.StockCount;
+        var stockcount = @stockCount;
 
         if (stockcount == 0) {
             alert("Product is not available.")

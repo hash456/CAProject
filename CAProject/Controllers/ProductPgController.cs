@@ -26,6 +26,7 @@ namespace CAProj.Controllers
                 x => x.Id == productid).SingleOrDefault();
             ViewData["product"] = product;
 
+            // Get reviews related to the product from Review Table
             var reviews = db.Review.Where(
                 x => x.ProductId == product.Id).ToList();
             ViewData["reviews"] = reviews;
@@ -41,6 +42,17 @@ namespace CAProj.Controllers
             {
                 ViewData["avgScore"] = (double)0;
             }
+
+            // Get stock count and number sold from ActivationCode Table
+            int stockCount = Convert.ToInt32(db.ActivationCode.Where(
+                x => x.ProductId == productid && x.IsSold == false)
+                .Count());
+            ViewData["stockCount"] = stockCount;
+
+            int numSold = Convert.ToInt32(db.ActivationCode.Where(
+                x => x.ProductId == productid && x.IsSold == true)
+                .Count());
+            ViewData["numSold"] = numSold;
 
             return View();
         }
