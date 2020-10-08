@@ -32,7 +32,19 @@ namespace CAProject.Controllers
                 ViewData["DisplayLogout"] = "YES";
             }
 
-            return View(await PaginatedList<Product>.CreateAsync(db.Product,pageNumber ?? 1, pageSize));
+            PaginatedList<Product> paginatedList = await PaginatedList<Product>.CreateAsync(db.Product, pageNumber ?? 1, pageSize);
+            ViewData["paginatedList"] = paginatedList;
+
+            Dictionary<int, int> paginatedStockCount = new Dictionary<int, int>();
+            foreach(Product p in paginatedList)
+            {
+                paginatedStockCount.Add(p.Id, Convert.ToInt32(db.ActivationCode.Where(
+                                                    x => x.ProductId == p.Id && x.IsSold == true).Count()));
+            }
+
+            ViewData["paginatedStockCount"] = paginatedStockCount;
+
+            return View();
         }
 
         public IActionResult Privacy()

@@ -1,9 +1,10 @@
-﻿@model PaginatedList<Product>
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    PaginatedList<Product> paginatedList = (PaginatedList<Product>)ViewData["paginatedList"];
+    var prevDisabled = !paginatedList.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !paginatedList.HasNextPage ? "disabled" : "";
+
+    Dictionary<int, int> paginatedStockCount = (Dictionary<int, int>)ViewData["paginatedStockCount"];
 }
 
 <style>
@@ -72,14 +73,14 @@
         max-height: 4rem;
     }
 
-    .product-item button:hover {
+    .product-item button:hover:enabled {
         background-color: orange;
         color: black;
     }
 </style>
 
 <div class="product-container">
-    @foreach (Product product in Model)
+    @foreach (Product product in paginatedList)
     {
         <div class="product-item">
             <div>
@@ -96,20 +97,48 @@
                 <p>@product.Description</p>
             </div>
             <div>
-                <button class="btn btn-primary"><span class="mr-1">$@product.Price</span>Add To Cart</button>
+                @if (paginatedStockCount[product.Id] > 0)
+                {
+                    <button value=@product.Id class="btn btn-primary add-to-cart-button">
+                        <span class="mr-1">$@product.Price</span>Add To Cart
+                    </button>
+                }
+                else
+                {
+                    <button value=@product.Id class="btn btn-danger" disabled>
+                        Out Of Stock
+                    </button>
+                }
             </div>
         </div>
     }
 </div>
 
 <a asp-action="Index"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   class="btn btn-default @prevDisabled">
+    asp-route-pageNumber="@(paginatedList.PageIndex - 1)"
+    class="btn btn-default @prevDisabled">
     Previous
 </a>
 
 <a asp-action="Index"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   class="btn btn-default @nextDisabled">
+    asp-route-pageNumber="@(paginatedList.PageIndex + 1)"
+    class="btn btn-default @nextDisabled">
     Next
 </a>
+
+<script>
+    window.onload = function () {
+        // tempCart is a string of productId
+        // 1,2,2 means user currently added product 1 once and product 2 twice
+        let addToCartButton = document.getElementsByClassName("add-to-cart-button");
+        for (let i = 0; i < addToCartButton.length; i++) {
+            addToCartButton[i].onclick = function (event) {
+                let tempCart = sessionStorage.getItem("tempCart");
+                if (tempCart === null)
+                    sessionStorage.setItem("tempCart", event.target.value);
+                else
+                    sessionStorage.setItem("tempCart", tempCart + "," + event.target.value);
+            }
+        }
+    }
+</script>
