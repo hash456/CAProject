@@ -23,12 +23,21 @@ namespace CAProject.Controllers
             this.db = db;
         }
 
-        public async Task<IActionResult> Index(int? pageNumber)
+        public async Task<IActionResult> Index(int? pageNumber, string search)
         {
+            var products = from p in db.Product
+                           select p;
+
+            // Search functionality
+            if (!String.IsNullOrEmpty(search))
+            {
+                products = products.Where(x => x.Name.Contains(search) || x.Description.Contains(search));
+            }
+
             int pageSize = 9;
 
             // Get Paginated Result
-            PaginatedList<Product> paginatedList = await PaginatedList<Product>.CreateAsync(db.Product, pageNumber ?? 1, pageSize);
+            PaginatedList<Product> paginatedList = await PaginatedList<Product>.CreateAsync(products, pageNumber ?? 1, pageSize);
             ViewData["paginatedList"] = paginatedList;
 
             // Get stock count for each product
