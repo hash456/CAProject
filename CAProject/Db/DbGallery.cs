@@ -26,6 +26,8 @@ namespace CAProject.Db
             // Create a composite key in ActivationCode table
             // Note: .HasCompositeKey does not make our composite key the primary key, need to use .HasKey to do this
             model.Entity<ActivationCode>().HasKey(x => new { x.ActivationCodeId, x.ProductId });
+
+            model.Entity<Session>().HasKey(x => new { x.SessionId, x.UserId });
         }
 
         public DbSet<Product> Product { get; set; }
@@ -33,6 +35,10 @@ namespace CAProject.Db
 
         public DbSet<Review> Review { get; set; }
         public DbSet<ActivationCode> ActivationCode { get; set; }
+
+        public DbSet<Session> Sessions { get; set; }
+
+
         public DbSet<Cart> Cart { get; set; }
     }
 }

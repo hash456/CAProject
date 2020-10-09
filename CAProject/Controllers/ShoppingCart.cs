@@ -6,6 +6,7 @@ using CAProject.Db;
 using Microsoft.AspNetCore.Mvc;
 using CAProject.Models;
 using System.Runtime.InteropServices.ComTypes;
+using Microsoft.AspNetCore.Http;
 
 namespace CAProject.Controllers
 {
@@ -17,6 +18,7 @@ namespace CAProject.Controllers
         {
             this.db = db;
         }
+
         public IActionResult Index()
         {
             List<Cart> Cart = db.Cart.ToList();
@@ -27,6 +29,9 @@ namespace CAProject.Controllers
                 products.Add(product);
             }
             ViewData["Cart"] = products;
+
+            ViewData["SessionId"] = HttpContext.Session.GetString("SessionId");
+
             return View();
         }
 
