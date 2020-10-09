@@ -26,5 +26,6 @@ namespace CAProject.Db
         public DbSet<User> Users { get; set; }
 
         public DbSet<Review> Review { get; set; }
+        public DbSet<Cart> Cart { get; set; }
     }
 }

@@ -33,7 +33,27 @@ namespace CAProject.Db
                 Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/1200px-.NET_Core_Logo.svg.png",
                 Price = 100,
                 StockCount = 10
-            }); ;
+            });
+
+            db.Product.Add(new Product
+            {
+                Name = ".Net Charts",
+                Platform = "Windows 10",
+                Description = "Brings powerful charting capabilities to your .NET applications",
+                Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQgc6qkj_WlIXaKCFTiYiV9OJzH0hlxEGA3lw&usqp=CAU",
+                Price = 69.99,
+                StockCount = 97
+            });
+
+            db.Product.Add(new Product
+            {
+                Name = ".Net Numerics",
+                Platform = "Windows 10",
+                Description = "Powerful numerical methods for your .NET simulations.",
+                Image = "https://thumbs.dreamstime.com/b/cosine-graph-cosine-waves-graph-icon-vector-image-can-also-be-used-math-symbols-suitable-mobile-apps-web-apps-print-100322977.jpg",
+                Price = 59.99,
+                StockCount = 64
+            });
 
 
             db.Product.Add(new Product
@@ -45,7 +65,7 @@ namespace CAProject.Db
                 Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/1200px-.NET_Core_Logo.svg.png",
                 Price = 100,
                 StockCount = 0
-            }); ;
+            });
 
             for (int i = 0; i < 34; i++)
             {

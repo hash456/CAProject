@@ -1,0 +1,55 @@
+﻿.input-text {
+    width: 40px;
+    height: 30px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #afafaf;
+}
+
+.quantitybtn {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+    .quantitybtn input {
+        display: inline-block;
+        margin: 0;
+        vertical-align: top;
+        box-shadow: none;
+    }
+
+.minus, .plus {
+    height: 30px;
+    width: 20px;
+    background-color: #ffffff;
+    border: 1px solid #afafaf;
+    cursor: pointer;
+    text-align: center;
+}
+
+.minus {
+    border-right: none;
+}
+
+.plus {
+    border-left: none;
+}
+
+    .minus:hover, .plus:hover {
+        background: #eeeeee;
+    }
+
+.quantitybtn input::-webkit-outer-spin-button,
+.quantitybtn input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+}
+
+.minus:focus, .plus:focus {
+    outline: none;
+}

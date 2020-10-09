@@ -6,6 +6,11 @@
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
+@section Scripts
+{
+    <script src="~/js/Home_AddToCart.js"></script>
+}
+
 <style>
     .product-container {
         display: flex;
@@ -96,7 +101,7 @@
                 <p>@product.Description</p>
             </div>
             <div>
-                <button class="btn btn-primary"><span class="mr-1">$@product.Price</span>Add To Cart</button>
+                <button class="btn btn-primary" typt="submit" onclick="AddToCart()" product_id ="@product.Id"><span class="mr-1">$@product.Price</span>Add To Cart</button>
             </div>
         </div>
     }
