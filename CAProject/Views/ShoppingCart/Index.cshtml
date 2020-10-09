@@ -1,0 +1,161 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    List<Product> products = (List<Product>)ViewData["Cart"];
+}
+
+<link href="~/css/CartStyle.css" rel="stylesheet" type="text/css" />
+<link href="~/css/QuantityButtonStyle.css" rel="stylesheet" type="text/css" />
+
+@section Scripts
+{
+    <script src="~/js/QtyBtn.js"></script>
+}
+
+
+<div>
+    <h2>VIEW CART</h2>
+    <hr />
+</div>
+
+
+<div class="cart_header">
+    <div class="viewcart">
+        <table class="header_table">
+            <tr>
+                <th></th>
+                <td>
+                    <input type="button" value="CONTINUE SHOPPING" onclick="ContShopping()" class="cont_shopping" />
+                </td>
+                <td>
+                    <div class="btn_wrapper">
+                        <input type="button" value="PROCEED TO CHECKOUT" onclick="Checkout()" class="checkout" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="price">
+        <table>
+            <tr>
+                <th id="cart_total">CART TOTAL</th>
+                <td width="200px" style="text-align:right"><div id="price_total"></div></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div style="clear:both"></div>
+
+<table>
+    @for (int i = 0; i < products.Count; i += 2)
+    {
+        int j;
+        <tr>
+            @for (j = 0; j < 2 && i + j < products.Count; j++)
+            {
+                <td>
+                    <div class="cart_content">
+                        @*can be dynamically generated in a table*@
+                        <div class="item_container">
+                            <div class="item_display">
+                                @{ 
+                                    string url = products[i + j].Image;
+                                    string desc = products[i + j].Description;
+                                    string name = products[i + j].Name;
+                                }
+                                <img src=@url class="item_img" />
+                                <div class="desc_container">
+                                    <p class="item_name"><b>@name</b></p>
+                                    <p>@desc</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item_calculator">
+                            <div class="calculator">
+                                <table>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td width="100px">
+                                            <div class="quantitybtn">
+                                                <input type="button" value="-" class="minus" id="item1_minus" onclick="QtyMinus()"><input type="number" id="item1_input" min="1" max="" name="quantity" value="1" title="Qty" class="input-text"><input type="button" value="+" class="plus" id="item1_plus" onclick="QtyPlus()">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>EACH</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>SUBTOTAL</th>
+                                        <td>
+                                            <div class="item_subprice"></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <div class="item_delete">
+                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlP5KUHwia9MiER09OFBNh9TBOr4VFYipC0w&usqp=CAU" class="delete_icon" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+             }
+             @for (; j < 2; j++)
+             {
+                 <td></td>
+             }
+        </tr>
+     }
+    </table>
+        @*below is just a repetition of another item
+            <div class="item_container">
+                <div class="item_display">
+                    <img src="https://thumbs.dreamstime.com/b/cosine-graph-cosine-waves-graph-icon-vector-image-can-also-be-used-math-symbols-suitable-mobile-apps-web-apps-print-100322977.jpg" class="item_img" />
+                    <div class="desc_container">
+                        <p class="item_name"><b>.NET Numerics</b></p>
+                        <p>Powerful numerical methods for your .NET simulations.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item_calculator">
+                <div class="calculator">
+                    <table>
+                        <tr>
+                            <td>
+                            </td>
+                            <td width="100px">
+                                <div class="quantitybtn">
+                                    <input type="button" value="-" class="minus" onclick="calculateTotal_item2b()"><input type="number" id="num2" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus" onclick="calculateTotal_item2a()">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>EACH</th>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <th>SUBTOTAL</th>
+                            <td>
+                                <div class="item_subprice"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="item_delete">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlP5KUHwia9MiER09OFBNh9TBOr4VFYipC0w&usqp=CAU" class="delete_icon" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>*@
+    
+
+
