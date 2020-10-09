@@ -28,7 +28,8 @@ namespace CAProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddSession();
+            /*
             services.AddDistributedMemoryCache();
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -39,6 +40,8 @@ namespace CAProject
             {
                 opts.Cookie.IsEssential = true; // make the session cookie Essential
             });
+            */
+
             // add our database context into DI container
             services.AddDbContext<DbGallery>(opt =>
                 opt.UseLazyLoadingProxies().UseSqlServer(
@@ -66,7 +69,6 @@ namespace CAProject
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.UseSession();
 
             app.UseEndpoints(endpoints =>

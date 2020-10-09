@@ -27,11 +27,6 @@ namespace CAProject.Controllers
         {
             int pageSize = 9;
 
-            if (HttpContext.Session.GetString("LoggedIn") != null)
-            {
-                ViewData["DisplayLogout"] = "YES";
-            }
-
             PaginatedList<Product> paginatedList = await PaginatedList<Product>.CreateAsync(db.Product, pageNumber ?? 1, pageSize);
             ViewData["paginatedList"] = paginatedList;
 
@@ -43,6 +38,7 @@ namespace CAProject.Controllers
             }
 
             ViewData["paginatedStockCount"] = paginatedStockCount;
+            ViewData["SessionId"] = HttpContext.Session.GetString("SessionId");
 
             return View();
         }

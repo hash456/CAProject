@@ -32,16 +32,33 @@ namespace CAProject.Controllers
             }
             else 
             {
-                // session goes here 
-                HttpContext.Session.SetString("LoggedIn", "YES");
+                // Give User a new SessionId
+                string guid = Guid.NewGuid().ToString();
+                db.Sessions.Add(new Session()
+                {
+                    SessionId = guid,
+                    UserId = user.Id
+                });
+
+                db.SaveChanges();
+
+                HttpContext.Session.SetString("SessionId", guid);
+                ViewData["SessionId"] = guid;
+
                 return RedirectToAction("index", "home");
             }
 
         }
 
-        public IActionResult Logout()
+        public IActionResult Logout([FromServices] DbGallery db)
         {
+            // Remove the SessionId
+            string guid = HttpContext.Session.GetString("SessionId");
+            Session session = db.Sessions.FirstOrDefault(x => x.SessionId == guid);
+            db.Sessions.Remove(session);
+            db.SaveChanges();
             HttpContext.Session.Clear();
+            ViewData["SessionId"] = null;
 
             return RedirectToAction("Index", "Login");
         }

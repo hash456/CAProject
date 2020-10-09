@@ -9,6 +9,7 @@ using CAProject.Models;
 using CAProject.Db;
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.AspNetCore.Http;
 
 namespace CAProject.Controllers
 {
@@ -53,6 +54,8 @@ namespace CAProject.Controllers
                 x => x.ProductId == productid && x.IsSold == true)
                 .Count());
             ViewData["numSold"] = numSold;
+
+            ViewData["SessionId"] = HttpContext.Session.GetString("SessionId");
 
             return View();
         }
