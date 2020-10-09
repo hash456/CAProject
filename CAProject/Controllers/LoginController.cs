@@ -52,11 +52,13 @@ namespace CAProject.Controllers
 
         public IActionResult Logout([FromServices] DbGallery db)
         {
-            // Remove the SessionId
+            // Remove the SessionId from database
             string guid = HttpContext.Session.GetString("SessionId");
             Session session = db.Sessions.FirstOrDefault(x => x.SessionId == guid);
             db.Sessions.Remove(session);
             db.SaveChanges();
+
+            // Remove the SessionId from Session Object
             HttpContext.Session.Clear();
             ViewData["SessionId"] = null;
 

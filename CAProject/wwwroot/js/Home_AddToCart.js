@@ -1,5 +1,5 @@
 ﻿window.onload = function () {
-    let elemList = document.getElementsByClassName("btn btn-primary");
+    let elemList = document.getElementsByClassName("add-to-cart");
 
     for (let i = 0; i < elemList.length; i++) {
         elemList[i].addEventListener("click", AddToCart);
@@ -24,11 +24,12 @@ function SendToCart(productId) {
             if (this.status === 200 || this.status === 302) {
                 let data = JSON.parse(this.responseText);
 
-                if (this.status === 200) {
+                if (this.status === 200 && data.status == "success") {
                     console.log("Successful operation: " + data.success);
                 }
-                else if (this.status === 302) {
-                    window.location = data.redirect_url;
+                else {
+                    // Redirect user to login page if user not yet login
+                    window.location.assign(window.location.href + "Login/Index");
                 }
             }
         }

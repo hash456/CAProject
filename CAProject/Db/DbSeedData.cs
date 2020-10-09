@@ -21,6 +21,26 @@ namespace CAProject.Db
             AddUsers();
             AddReviews();
             AddActivationCodes();
+            AddToCart();
+        }
+
+        protected void AddToCart()
+        {
+            db.Cart.Add(new Cart 
+            {
+                ProductId = 1,
+                UserId = 2,
+                Quantity = 2
+            });
+
+            db.Cart.Add(new Cart
+            {
+                ProductId = 2,
+                UserId = 2,
+                Quantity = 1
+            });
+
+            db.SaveChanges();
         }
 
         protected void AddActivationCodes()
@@ -66,7 +86,12 @@ namespace CAProject.Db
             {
                 ActivationCodeId = "6234-5678-1234-5688",
                 ProductId = 2,
-                IsSold = true
+            });
+
+            db.ActivationCode.Add(new ActivationCode
+            {
+                ActivationCodeId = "6234-5678-1234-5688",
+                ProductId = 3,
             });
 
             db.SaveChanges();
