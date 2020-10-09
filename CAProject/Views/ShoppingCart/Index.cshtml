@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    List<Product> products = (List<Product>)ViewData["Cart"];
+    List<Cart> cart = (List<Cart>)ViewData["Cart"];
+    Dictionary<int, int> stockCount = (Dictionary<int, int>)ViewData["StockCount"];
 }
 
 <link href="~/css/CartStyle.css" rel="stylesheet" type="text/css" />
@@ -11,7 +12,24 @@
     <script src="~/js/QtyBtn.js"></script>
 }
 
+<style>
+    .cart-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row; 
+    }
 
+    .cart-item {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .cart-image{
+        width: 12rem;
+        height: 12rem;
+    }
+</style>
 <div>
     <h2>VIEW CART</h2>
     <hr />
@@ -45,22 +63,41 @@
 </div>
 <div style="clear:both"></div>
 
+@*Not sure how you style your page, added some simple cart for now just to show the correct info*@
+<div class="cart-container">
+    @foreach(Cart item in cart)
+    {
+        <div class="cart-items">
+            <span>
+                @item.Product.Name
+                <img class="cart-image" src=@item.Product.Image alt=@item.Product.Name />
+            </span>
+            <span class="quantitybtn">
+                <input type="button" value="-" class="minus" id="item1_minus" onclick="QtyMinus()">
+                <input type="number" id="item1_input" min="1" max="@stockCount[item.ProductId]" name="quantity" value="@item.Quantity" title="Qty" class="input-text">
+                <input type="button" value="+" class="plus" id="item1_plus" onclick="QtyPlus()">
+                <button class="btn btn-danger ml-2">Remove</button>
+            </span>
+        </div>
+    }
+</div>
+
+@*
 <table>
-    @for (int i = 0; i < products.Count; i += 2)
+    @for (int i = 0; i < cart.Count; i += 2)
     {
         int j;
         <tr>
-            @for (j = 0; j < 2 && i + j < products.Count; j++)
+            @for (j = 0; j < 2 && i + j < cart.Count; j++)
             {
                 <td>
                     <div class="cart_content">
-                        @*can be dynamically generated in a table*@
                         <div class="item_container">
                             <div class="item_display">
                                 @{ 
-                                    string url = products[i + j].Image;
-                                    string desc = products[i + j].Description;
-                                    string name = products[i + j].Name;
+                                    string url = cart[i + j].Product.Image;
+                                    string desc = cart[i + j].Product.Description;
+                                    string name = cart[i + j].Product.Name;
                                 }
                                 <img src=@url class="item_img" />
                                 <div class="desc_container">
@@ -114,6 +151,7 @@
         </tr>
      }
     </table>
+*@
         @*below is just a repetition of another item
             <div class="item_container">
                 <div class="item_display">
