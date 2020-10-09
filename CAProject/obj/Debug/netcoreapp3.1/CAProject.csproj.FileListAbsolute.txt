@@ -317,3 +317,4 @@ C:\Users\Isabe\Documents\ASP.NET\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAP
 C:\Users\Isabe\Documents\ASP.NET\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.genruntimeconfig.cache
 C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.csproj.CoreCompileInputs.cache
 C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Index.cshtml.g.cs

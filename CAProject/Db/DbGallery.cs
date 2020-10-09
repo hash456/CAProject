@@ -33,5 +33,6 @@ namespace CAProject.Db
 
         public DbSet<Review> Review { get; set; }
         public DbSet<ActivationCode> ActivationCode { get; set; }
+        public DbSet<Cart> Cart { get; set; }
     }
 }
