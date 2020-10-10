@@ -8,10 +8,10 @@
 function AddToCart(event) {
     let elem = event.currentTarget;
     let productId = elem.getAttribute("product_id");
-    SendToCart(productId);
+    SendToCart(productId, 1);
 }
 
-function SendToCart(productId) {
+function SendToCart(productId, quantity) {
     let xhr = new XMLHttpRequest();
 
     xhr.open("POST", "/ShoppingCart/UpdateCart");
@@ -36,6 +36,7 @@ function SendToCart(productId) {
     };
 
     xhr.send(JSON.stringify({
-        ProductId: productId
+        ProductId: parseInt(productId),
+        Quantity: parseInt(quantity)
     }));
 }
