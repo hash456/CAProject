@@ -77,6 +77,7 @@ namespace CAProject.Controllers
 
             // Get the product Id from cartInput
             int productId = Convert.ToInt32(cartInput.ProductId);
+            int quantity = Convert.ToInt32(cartInput.Quantity);
 
             // Check if the user currently as an order
             // Create a new order if user currently don't have any order yet
@@ -103,14 +104,14 @@ namespace CAProject.Controllers
                 {
                     OrderId = order.Id,
                     ProductId = productId,
-                    Quantity = 1
+                    Quantity = quantity
                 };
                 db.Cart.Add(cart);
             }
             // Don't allow user to add more that what we have in stock
             else if (cart.Quantity < db.ActivationCode.Where(x => x.ProductId == cart.ProductId && x.IsSold == false).Count())
             {
-                cart.Quantity++;
+                cart.Quantity += quantity;
             } 
             else
             {
