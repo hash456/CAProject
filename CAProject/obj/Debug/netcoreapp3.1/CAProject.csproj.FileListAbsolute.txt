@@ -318,84 +318,84 @@ C:\Users\Isabe\Documents\ASP.NET\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAP
 C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.csproj.CoreCompileInputs.cache
 C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Index.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\appsettings.Development.json
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\CAProject.exe
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\CAProject.deps.json
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\CAProject.runtimeconfig.json
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\CAProject.runtimeconfig.dev.json
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\CAProject.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\CAProject.pdb
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\CAProject.Views.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\CAProject.Views.pdb
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Castle.Core.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.csprojAssemblyReference.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.AssemblyInfoInputs.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.AssemblyInfo.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.csproj.CoreCompileInputs.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorAssemblyInfo.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorAssemblyInfo.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.TagHelpers.input.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.TagHelpers.output.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorCoreGenerate.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ProductPg\Index.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Index.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorTargetAssemblyInfo.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorTargetAssemblyInfo.cs
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.Views.pdb
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.csproj.CopyComplete
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\staticwebassets\CAProject.StaticWebAssets.Manifest.cache
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\staticwebassets\CAProject.StaticWebAssets.xml
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.dll
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.pdb
-C:\Users\Isabe\Downloads\CAProject-master(1)\CAProject-master\CAProject\obj\Debug\netcoreapp3.1\CAProject.genruntimeconfig.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\appsettings.Development.json
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\appsettings.json
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\CAProject.exe
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\CAProject.deps.json
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\CAProject.runtimeconfig.json
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\CAProject.runtimeconfig.dev.json
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\CAProject.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\CAProject.pdb
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\CAProject.Views.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\CAProject.Views.pdb
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Castle.Core.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.csprojAssemblyReference.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.AssemblyInfoInputs.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.AssemblyInfo.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.csproj.CoreCompileInputs.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.MvcApplicationPartsAssemblyInfo.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorAssemblyInfo.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorAssemblyInfo.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.TagHelpers.input.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.TagHelpers.output.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorCoreGenerate.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ProductPg\Index.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Index.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorTargetAssemblyInfo.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.RazorTargetAssemblyInfo.cs
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.Views.pdb
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.csproj.CopyComplete
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\staticwebassets\CAProject.StaticWebAssets.Manifest.cache
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\staticwebassets\CAProject.StaticWebAssets.xml
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.dll
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.pdb
+F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\obj\Debug\netcoreapp3.1\CAProject.genruntimeconfig.cache
