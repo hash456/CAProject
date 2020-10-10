@@ -21,6 +21,11 @@
     }
 </style>
 
+@section Scripts
+{
+    <script src="~/js/Home_AddToCart.js"></script>
+}
+
 
 <table style="width: 100%">
     <colgroup>
@@ -62,14 +67,15 @@
             </p>
         </td>
         <td style="vertical-align:top; padding:10px">
-            <form method="post" class="div1">
+            @*changed form to div, may need to change back to form when implement Quantity later*@
+            <div class="div1">
                 Quantity: <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" style="font-size: 12px; width:60px" />
                 <br /><br />
-                <button type="submit" id="AddtoCart" style="background-color:darkslategrey; color:floralwhite; border:none">
+                <button product_id="@product.Id" class="add-to-cart" style="background-color:darkslategrey; color:floralwhite; border:none">
                     <i class="fa fa-shopping-cart"></i> Add to Cart
                 </button>
 
-            </form>
+            </div>
 
         </td>
     </tr>
@@ -81,24 +87,24 @@
 @foreach (Review rev in reviews)
 {
 
-<p style="font-size: 14px">
+    <p style="font-size: 14px">
 
-    @rev.UserName
+        @rev.UserName
+        <br />
+        @for (int i = 0; i < rev.Rating; i++)
+        {
+            <span class="fa fa-star checked"></span>
+        }
+        @for (int i = 0; i < 5 - rev.Rating; i++)
+        {
+            <span class="fa fa-star"></span>
+        }
+        <br />
+        <span style="color:grey">@rev.DateReviewed</span>
+        <br />
+        @rev.MainReview
+    </p>
     <br />
-    @for (int i = 0; i < rev.Rating; i++)
-    {
-        <span class="fa fa-star checked"></span>
-    }
-    @for (int i = 0; i < 5 - rev.Rating; i++)
-    {
-        <span class="fa fa-star"></span>
-    }
-    <br />
-    <span style="color:grey">@rev.DateReviewed</span>
-    <br />
-    @rev.MainReview
-</p>
-<br />
 }
 <script>
     // For average rating only
@@ -127,19 +133,19 @@
         ? "fa fa-star-half-o checked"
             : "fa fa-star";
 
+    // Using the AddtoCart function in Home_AddToCart.js
+    /*
     window.onload = function () {
         let elem = document.getElementById("AddtoCart");
-
-
         elem.addEventListener("click", AddtoCart);
-        
     }
-
+ 
+    /*
     function AddtoCart(event)
     {
         var quantity = document.getElementById("quantity").value;
-        var stockcount = @stockCount;
-
+    //   var stockcount = @stockCount;
+    /*
         if (stockcount == 0) {
             alert("Product is not available.")
         }
@@ -153,5 +159,7 @@
         }
 
     }
+    */
+
 </script>
 

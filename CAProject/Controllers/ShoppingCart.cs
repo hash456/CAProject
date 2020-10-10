@@ -32,9 +32,21 @@ namespace CAProject.Controllers
                 return RedirectToAction("Index", "Login");
             }
             int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
+            ViewData["SessionId"] = sessionId;
 
-            // Get all the items in the cart belonging to that user
-            List<Cart> cart = db.Cart.Where(x => x.UserId == userId).ToList();
+            // Get the Order ID to access the cart
+            Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
+
+            // Return empty cart if no order id is found
+            if(order == null)
+            {
+                ViewData["Cart"] = new List<Cart>();
+                ViewData["StockCount"] = new Dictionary<int, int>();
+                return View();
+            }
+
+            // Get all the items in the cart belonging to that orderId
+            List<Cart> cart = db.Cart.Where(x => x.OrderId == order.Id).ToList();
 
             // Get the stock count for each items in the cart
             Dictionary<int, int> stockCount = new Dictionary<int, int>();
@@ -44,20 +56,8 @@ namespace CAProject.Controllers
                 stockCount.Add(item.ProductId, count);
             }
 
-            /*
-            List<Product> products = new List<Product>();
-
-            for (int i = 0; i < Cart.Count; i++)
-            {
-                Product product = db.Product.FirstOrDefault(x => x.Id == int.Parse(Cart[i].ProductId));
-                products.Add(product);
-            }
-            ViewData["Cart"] = products;
-            */
-
             ViewData["Cart"] = cart;
             ViewData["StockCount"] = stockCount;
-            ViewData["SessionId"] = sessionId;
 
             return View();
         }
@@ -66,6 +66,7 @@ namespace CAProject.Controllers
         {
             // Get the User ID for the current session
             string sessionId = HttpContext.Session.GetString("SessionId");
+            string message = "Items have been added to cart";
 
             // No sessionId = user not logged in = don't allow them to add to cart for now
             if (sessionId == null)
@@ -77,14 +78,30 @@ namespace CAProject.Controllers
             // Get the product Id from cartInput
             int productId = Convert.ToInt32(cartInput.ProductId);
 
+            // Check if the user currently as an order
+            // Create a new order if user currently don't have any order yet
+            if(db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false) == null)
+            {
+                db.Orders.Add(new Order
+                {
+                    UserId = userId,
+                    OrderDate = DateTime.Now.ToString()
+                });
+
+                db.SaveChanges();
+            }
+
+            // Get the order id
+            Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
+
             // Check if the current item is already in the cart
-            Cart cart = db.Cart.FirstOrDefault(x => x.ProductId == productId && x.UserId == userId);
+            Cart cart = db.Cart.FirstOrDefault(x => x.ProductId == productId && x.OrderId == order.Id);
 
             if (cart == null)
             {
                 cart = new Cart()
                 {
-                    UserId = userId,
+                    OrderId = order.Id,
                     ProductId = productId,
                     Quantity = 1
                 };
@@ -94,10 +111,66 @@ namespace CAProject.Controllers
             else if (cart.Quantity < db.ActivationCode.Where(x => x.ProductId == cart.ProductId && x.IsSold == false).Count())
             {
                 cart.Quantity++;
+            } 
+            else
+            {
+                message = "Reached maximum stock";
             }
             
             db.SaveChanges();
             
+            return Json(new
+            {
+                status = "success",
+                message
+            });
+        }
+
+        public IActionResult ChangeCartQty([FromBody] ChangeQtyInput changeQtyInput)
+        {
+            // Get the User ID for the current session
+            string sessionId = HttpContext.Session.GetString("SessionId");
+
+            // No sessionId = user not logged in = don't allow them to add to cart for now
+            if (sessionId == null)
+            {
+                return Json(new { status = "error" });
+            }
+            int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
+
+            // Get the order id
+            Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
+
+            // Get the productId from string to int
+            int productIdNum = Convert.ToInt32(changeQtyInput.ProductId);
+
+            // Find the product in the user cart
+            Cart cart = db.Cart.FirstOrDefault(x => x.ProductId == productIdNum && x.OrderId == order.Id);
+
+            if(changeQtyInput.Action == "minus" && cart.Quantity > 1)
+            {
+                cart.Quantity--;
+            }
+            else if(changeQtyInput.Action == "plus" && 
+                cart.Quantity < db.ActivationCode.Where(x => x.ProductId == cart.ProductId && x.IsSold == false).Count())
+            { 
+                cart.Quantity++;
+            } 
+            else if(changeQtyInput.Action == "remove")
+            {
+                db.Cart.Remove(cart);
+                db.SaveChanges();
+
+                // Check if cart is empty after removing
+                if(db.Cart.FirstOrDefault(x => x.OrderId == order.Id) == null)
+                {
+                    // If empty, just remove the order id alltogether
+                    db.Orders.Remove(order);
+                }
+            }
+
+            db.SaveChanges();
+
             return Json(new
             {
                 status = "success"
