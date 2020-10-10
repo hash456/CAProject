@@ -69,7 +69,7 @@ namespace CAProject.Controllers
                     string[] xx = x.Split(',');
                     Cart y = new Cart();
                     y.ProductId = Convert.ToInt32(xx[0]);
-                    y.Quantity = Convert.ToInt32(xx[0]);
+                    y.Quantity = Convert.ToInt32(xx[1]);
                     cart.Add(y);
                 }
 
