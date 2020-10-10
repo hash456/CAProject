@@ -44,7 +44,7 @@ namespace CAProject.Controllers
             {
                 Debug.WriteLine("paid");
             }
-            ViewData["SessionId"] = HttpContext.Session.Id;
+            ViewData["SessionId"] = sessionId;
 
             return View();
         }
