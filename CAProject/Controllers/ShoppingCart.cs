@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.ComTypes;
 using Microsoft.AspNetCore.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Runtime.CompilerServices;
+using System.ComponentModel.Design;
 
 namespace CAProject.Controllers
 {
@@ -29,10 +30,13 @@ namespace CAProject.Controllers
             // No sessionId = user not logged in = don't allow them to add to cart for now
             if(sessionId == null)
             {
+                // Use session storage here if not logged in //
                 return RedirectToAction("Index", "Login");
             }
             int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
             ViewData["SessionId"] = sessionId;
+
+            // Combine the session and db cart //
 
             // Get the Order ID to access the cart
             Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
@@ -42,6 +46,8 @@ namespace CAProject.Controllers
             {
                 ViewData["Cart"] = new List<Cart>();
                 ViewData["StockCount"] = new Dictionary<int, int>();
+                ViewData["TotalCost"] = (double)0;
+                ViewData["OrderId"] = (int)-1;
                 return View();
             }
 
@@ -56,7 +62,15 @@ namespace CAProject.Controllers
                 stockCount.Add(item.ProductId, count);
             }
 
+            double totalCost = 0;
+            foreach (Cart item in cart)
+            {
+                totalCost += item.Product.Price * item.Quantity;
+            }
+
+            ViewData["TotalCost"] = totalCost;
             ViewData["Cart"] = cart;
+            ViewData["OrderId"] = order.Id;
             ViewData["StockCount"] = stockCount;
 
             return View();
@@ -177,5 +191,23 @@ namespace CAProject.Controllers
                 status = "success"
             });
         }
+
+        /*
+        [HttpPost]
+        public IActionResult Checkout(string orderId)
+        {
+            int orderIdNum = Convert.ToInt32(orderId);
+
+            //Get List of Cart
+            List<Cart> cart = db.Cart.Where(x => x.OrderId == orderIdNum).ToList();
+
+            double totalCost = 0;
+            foreach(Cart item in cart)
+            {
+                totalCost += item.Product.Price * item.Quantity;
+            }
+
+        }
+        */
     }
 }
