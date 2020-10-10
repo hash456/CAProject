@@ -1,6 +1,5 @@
 ﻿window.onload = function () {
     let elemList = document.getElementsByClassName("add-to-cart");
-
     for (let i = 0; i < elemList.length; i++) {
         elemList[i].addEventListener("click", AddToCart);
     }
@@ -25,7 +24,8 @@ function SendToCart(productId) {
                 let data = JSON.parse(this.responseText);
 
                 if (this.status === 200 && data.status == "success") {
-                    console.log("Successful operation: " + data.success);
+                    console.log("Successful operation: " + data.status);
+                    alert(data.message);
                 }
                 else {
                     // Redirect user to login page if user not yet login

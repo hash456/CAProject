@@ -1,4 +1,5 @@
-﻿function QtyMinus() {
+﻿/*
+function QtyMinus() {
     let num = document.getElementById("item1_input").value;
     if (num == 1)
         return;
@@ -12,4 +13,5 @@ function QtyPlus() {
     num++;
     document.getElementById("item1_input").value = num;
 }
+*/
 
