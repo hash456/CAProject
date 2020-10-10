@@ -7651,25 +7651,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SakuraDemon\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Isabe\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\CAProject.csproj",
+      "projectUniqueName": "C:\\Users\\Isabe\\CAProject\\CAProject\\CAProject.csproj",
       "projectName": "CAProject",
-      "projectPath": "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\CAProject.csproj",
-      "packagesPath": "C:\\Users\\SakuraDemon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\obj\\",
+      "projectPath": "C:\\Users\\Isabe\\CAProject\\CAProject\\CAProject.csproj",
+      "packagesPath": "C:\\Users\\Isabe\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Isabe\\CAProject\\CAProject\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\SakuraDemon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Isabe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -7734,13 +7729,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
