@@ -103,9 +103,9 @@
                         <div class="item_container">
                             <div class="item_display">
                                 @{
-                                    string url = cart[i + j].Product.Image;
-                                    string desc = cart[i + j].Product.Description;
-                                    string name = cart[i + j].Product.Name;
+                                    string url = product[i + j].Image;
+                                    string desc = product[i + j].Description;
+                                    string name = product[i + j].Name;
                                     int id = cart[i + j].ProductId;
                                     int qty = cart[i + j].Quantity;
                                 }
@@ -131,12 +131,12 @@
                                     </tr>
                                     <tr>
                                         <th>EACH</th>
-                                        <td>SGD @cart[i + j].Product.Price</td>
+                                        <td>SGD @product[i + j].Price</td>
                                     </tr>
                                     <tr>
                                         <th>SUBTOTAL</th>
                                         <td>
-                                            <div class="item_subprice">SGD @((@cart[i + j].Product.Price) *(cart[i+j].Quantity))</div>
+                                            <div class="item_subprice">SGD @((@product[i + j].Price) *(cart[i+j].Quantity))</div>
                                         </td>
                                     </tr>
                                     <tr>
