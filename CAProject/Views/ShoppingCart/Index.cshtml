@@ -48,9 +48,11 @@
                     <input type="button" value="CONTINUE SHOPPING" onclick="ContShopping()" class="cont_shopping" />
                 </td>
                 <td>
-                    <div class="btn_wrapper">
-                        <input type="button" value="PROCEED TO CHECKOUT" onclick="Checkout()" class="checkout" />
-                    </div>
+                    <form id="form" method="post" action="/Checkout/Index">
+                        <div class="btn_wrapper">
+                            <input type="submit" value="PROCEED TO CHECKOUT" class="checkout">
+                        </div>
+                    </form>
                 </td>
             </tr>
         </table>
