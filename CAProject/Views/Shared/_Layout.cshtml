@@ -22,7 +22,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (ViewData["DisplayLogout"] != null)
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index">View Cart</a>
+                        </li>
+                        @if (ViewData["SessionId"] != null)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
@@ -34,6 +37,12 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
                             </li>
                         }
+                        <li class="nav-item">
+                            <form action="/Home/Index" method="post">
+                                <input type="text" id="search" name="search" placeholder="search..." />
+                                <input type="submit" class="btn btn-primary" />
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>

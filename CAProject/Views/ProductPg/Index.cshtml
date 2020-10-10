@@ -21,7 +21,6 @@
     }
 </style>
 
-
 <table style="width: 100%">
     <colgroup>
         <col span="1" style="width: 30%;">
@@ -62,13 +61,12 @@
             </p>
         </td>
         <td style="vertical-align:top; padding:10px">
-            <form method="post" class="div1">
-                Quantity: <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" style="font-size: 12px; width:60px" />
+            <form id="AddtoCart" product_id="@product.Id" class="div1" method="post" action="/ProductPg/?productid=@product.Id">
+                Quantity: <input type="number" id="quantity" name="quantity" value="1" min="1" max="@stockCount" style="font-size: 12px; width:60px" />
                 <br /><br />
-                <button type="submit" class="AddtoCart" style="background-color:darkslategrey; color:floralwhite; border:none" onclick="AddtoCart()">
+                <button type="submit" style="background-color:darkslategrey; color:floralwhite; border:none">
                     <i class="fa fa-shopping-cart"></i> Add to Cart
                 </button>
-
             </form>
 
         </td>
@@ -81,24 +79,24 @@
 @foreach (Review rev in reviews)
 {
 
-<p style="font-size: 14px">
+    <p style="font-size: 14px">
 
-    @rev.UserName
+        @rev.UserName
+        <br />
+        @for (int i = 0; i < rev.Rating; i++)
+        {
+            <span class="fa fa-star checked"></span>
+        }
+        @for (int i = 0; i < 5 - rev.Rating; i++)
+        {
+            <span class="fa fa-star"></span>
+        }
+        <br />
+        <span style="color:grey">@rev.DateReviewed</span>
+        <br />
+        @rev.MainReview
+    </p>
     <br />
-    @for (int i = 0; i < rev.Rating; i++)
-    {
-        <span class="fa fa-star checked"></span>
-    }
-    @for (int i = 0; i < 5 - rev.Rating; i++)
-    {
-        <span class="fa fa-star"></span>
-    }
-    <br />
-    <span style="color:grey">@rev.DateReviewed</span>
-    <br />
-    @rev.MainReview
-</p>
-<br />
 }
 <script>
     // For average rating only
@@ -127,23 +125,62 @@
         ? "fa fa-star-half-o checked"
             : "fa fa-star";
 
-    function AddtoCart()
+
+    window.onload = function () {
+        let elem = document.getElementById("AddtoCart");
+        elem.addEventListener("submit", AddtoCart);
+    }
+
+    function AddtoCart(event)
     {
         var quantity = document.getElementById("quantity").value;
+        var productId = event.currentTarget.getAttribute("product_id");
         var stockcount = @stockCount;
+
+        console.log(quantity, productId);
 
         if (stockcount == 0) {
             alert("Product is not available.")
+            return false;
         }
-        else if (quantity > 1)
-        {
-            alert("Items have been added to cart.")
+        else if (quantity >= 1 && quantity <= @stockCount) {
+            SendToCart(productId, quantity);
+            return true;
         }
-        else
-        {
-            alert("Item has been added to cart.");
+        else {
+            return false;
         }
-
     }
+
+    function SendToCart(productId, quantity) {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "/ShoppingCart/UpdateCart");
+        xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                // receive response from server
+                if (this.status === 200 || this.status === 302) {
+                    let data = JSON.parse(this.responseText);
+
+                    if (this.status === 200 && data.status == "success") {
+                        console.log("Successful operation: " + data.status);
+                        alert(data.message);
+                    }
+                    else {
+                        // Redirect user to login page if user not yet login
+                        window.location.assign(window.location.href + "Login/Index");
+                    }
+                }
+            }
+        };
+
+        xhr.send(JSON.stringify({
+            ProductId: parseInt(productId),
+            Quantity: parseInt(quantity)
+        }));
+    }
+
 </script>
 

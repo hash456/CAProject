@@ -21,6 +21,34 @@ namespace CAProject.Db
             AddUsers();
             AddReviews();
             AddActivationCodes();
+            AddOrders();
+        }
+
+        protected void AddOrders()
+        {
+            db.Orders.Add(new Order
+            {
+                UserId = 2,
+                OrderDate = DateTime.Now.ToString()
+            });
+
+            db.SaveChanges();
+
+            db.Cart.Add(new Cart 
+            {
+                ProductId = 1,
+                OrderId = 1,
+                Quantity = 2
+            });
+
+            db.Cart.Add(new Cart
+            {
+                ProductId = 2,
+                OrderId = 1,
+                Quantity = 1
+            });
+
+            db.SaveChanges();
         }
 
         protected void AddActivationCodes()
@@ -66,7 +94,12 @@ namespace CAProject.Db
             {
                 ActivationCodeId = "6234-5678-1234-5688",
                 ProductId = 2,
-                IsSold = true
+            });
+
+            db.ActivationCode.Add(new ActivationCode
+            {
+                ActivationCodeId = "6234-5678-1234-5688",
+                ProductId = 3,
             });
 
             db.SaveChanges();
@@ -149,6 +182,7 @@ namespace CAProject.Db
                     Name = testers[i]
                 });
             }
+
             db.SaveChanges();
         }
 

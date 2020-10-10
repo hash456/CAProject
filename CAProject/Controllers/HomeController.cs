@@ -23,16 +23,35 @@ namespace CAProject.Controllers
             this.db = db;
         }
 
-        public async Task<IActionResult> Index(int? pageNumber)
+        public async Task<IActionResult> Index(int? pageNumber, string search)
         {
-            int pageSize = 9;
+            var products = from p in db.Product
+                           select p;
 
-            if (HttpContext.Session.GetString("LoggedIn") != null)
+            // Search functionality
+            if (!String.IsNullOrEmpty(search))
             {
-                ViewData["DisplayLogout"] = "YES";
+                products = products.Where(x => x.Name.Contains(search) || x.Description.Contains(search));
             }
 
-            return View(await PaginatedList<Product>.CreateAsync(db.Product,pageNumber ?? 1, pageSize));
+            int pageSize = 9;
+
+            // Get Paginated Result
+            PaginatedList<Product> paginatedList = await PaginatedList<Product>.CreateAsync(products, pageNumber ?? 1, pageSize);
+            ViewData["paginatedList"] = paginatedList;
+
+            // Get stock count for each product
+            Dictionary<int, int> paginatedStockCount = new Dictionary<int, int>();
+            foreach(Product p in paginatedList)
+            {
+                paginatedStockCount.Add(p.Id, Convert.ToInt32(db.ActivationCode.Where(
+                                                    x => x.ProductId == p.Id && x.IsSold == false).Count()));
+            }
+
+            ViewData["paginatedStockCount"] = paginatedStockCount;
+            ViewData["SessionId"] = HttpContext.Session.GetString("SessionId");
+
+            return View();
         }
 
         public IActionResult Privacy()

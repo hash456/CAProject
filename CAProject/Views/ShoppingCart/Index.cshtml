@@ -1,0 +1,280 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    List<Cart> cart = (List<Cart>)ViewData["Cart"];
+    Dictionary<int, int> stockCount = (Dictionary<int, int>)ViewData["StockCount"];
+    int orderId = (int)ViewData["OrderId"];
+    double totalCost = (double)ViewData["TotalCost"];
+}
+
+<link href="~/css/CartStyle.css" rel="stylesheet" type="text/css" />
+<link href="~/css/QuantityButtonStyle.css" rel="stylesheet" type="text/css" />
+
+@section Scripts
+{
+    @*<script src="~/js/QtyBtn.js"></script>*@
+}
+
+<style>
+    .cart-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .cart-item {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .cart-image {
+        width: 12rem;
+        height: 12rem;
+    }
+</style>
+<div>
+    <h2>VIEW CART</h2>
+    <hr />
+</div>
+
+
+<div class="cart_header">
+    <div class="viewcart">
+        <table class="header_table">
+            <tr>
+                <th></th>
+                <td>
+                    <input type="button" value="CONTINUE SHOPPING" onclick="ContShopping()" class="cont_shopping" />
+                </td>
+                <td>
+                    <div class="btn_wrapper">
+                        <input type="button" value="PROCEED TO CHECKOUT" onclick="Checkout()" class="checkout" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="price">
+        <table>
+            <tr>
+                <th id="cart_total">CART TOTAL</th>
+                @totalCost
+                <td width="200px" style="text-align:right"><div id="price_total"></div></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div style="clear:both"></div>
+
+@*Not sure how you style your page, added some simple cart for now just to show the correct info*@
+    <div class="cart-container">
+        @foreach (Cart item in cart)
+        {
+            <div class="cart-items">
+                <span>
+                    @item.Product.Name
+                    <img class="cart-image" src=@item.Product.Image alt=@item.Product.Name />
+                </span>
+                <span class="quantitybtn">
+                    <input type="button" value="-" class="minus" product_id="@item.ProductId" id="item_minus">
+                    <input type="hidden" name="productId" value="@item.ProductId" />
+                    <input type="number" name="quantity" value="@item.Quantity"  id="item_input" min="1" max="@stockCount[item.ProductId]"  title="Qty" class="input-text">
+                    <input type="button" value="+" class="plus" product_id="@item.ProductId" id="item_plus">
+                    <button product_id="@item.ProductId" class="btn btn-danger ml-2 remove">Remove</button>
+                </span>
+            </div>
+        }
+    </div>
+    <form method="post" action="/ShoppingCart/Checkout">
+         <input type="hidden" name="orderId" value="@orderId"/>
+         <button type="submit">CheckOut</button>
+    </form>
+
+
+<script>
+    // Commented out QtyBtn.js
+    window.onload = function () {
+        let minusButtons = document.getElementsByClassName("minus");
+        for (minusButton of minusButtons) {
+            minusButton.addEventListener("click", QtyMinus);
+        }
+
+        let plusButtons = document.getElementsByClassName("plus");
+        for (plusButton of plusButtons) {
+            plusButton.addEventListener("click", QtyPlus);
+        }
+
+        let removeButtons = document.getElementsByClassName("remove");
+        for (removeButton of removeButtons) {
+            removeButton.addEventListener("click", Remove);
+        }
+    }
+
+    function QtyMinus(event) {
+        let elem = event.currentTarget;
+        let productId = elem.getAttribute("product_id");
+        ChangeCartQty(productId, "minus");
+    }
+
+    function QtyPlus(event) {
+        let elem = event.currentTarget;
+        let productId = elem.getAttribute("product_id");
+        ChangeCartQty(productId, "plus");
+    }
+
+    function Remove(event) {
+        let elem = event.currentTarget;
+        let productId = elem.getAttribute("product_id");
+        ChangeCartQty(productId, "remove");
+    }
+
+    function ChangeCartQty(productId, action) {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "/ShoppingCart/ChangeCartQty");
+        xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                // receive response from server
+                if (this.status === 200 || this.status === 302) {
+                    let data = JSON.parse(this.responseText);
+
+                    if (this.status === 200 && data.status == "success") {
+                        console.log("Successful operation: " + data.status);
+                        // Need to refresh current window for changes to show
+                        location.reload();
+                    }
+                    else {
+                        // Redirect user to login page if user not yet login
+                        window.location.assign(window.location.href + "Login/Index");
+                    }
+                }
+            }
+        };
+
+        xhr.send(JSON.stringify({
+            ProductId: productId,
+            Action: action
+        }));
+    }
+
+</script>
+
+@*
+    <table>
+        @for (int i = 0; i < cart.Count; i += 2)
+        {
+            int j;
+            <tr>
+                @for (j = 0; j < 2 && i + j < cart.Count; j++)
+                {
+                    <td>
+                        <div class="cart_content">
+                            <div class="item_container">
+                                <div class="item_display">
+                                    @{
+                                        string url = cart[i + j].Product.Image;
+                                        string desc = cart[i + j].Product.Description;
+                                        string name = cart[i + j].Product.Name;
+                                    }
+                                    <img src=@url class="item_img" />
+                                    <div class="desc_container">
+                                        <p class="item_name"><b>@name</b></p>
+                                        <p>@desc</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item_calculator">
+                                <div class="calculator">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td width="100px">
+                                                <div class="quantitybtn">
+                                                    <input type="button" value="-" class="minus" id="item1_minus" onclick="QtyMinus()">
+                                                    <input type="number" id="item1_input" min="1" max="" name="quantity" value="1" title="Qty" class="input-text">
+                                                    <input type="button" value="+" class="plus" id="item1_plus" onclick="QtyPlus()">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>EACH</th>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th>SUBTOTAL</th>
+                                            <td>
+                                                <div class="item_subprice"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <div class="item_delete">
+                                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlP5KUHwia9MiER09OFBNh9TBOr4VFYipC0w&usqp=CAU" class="delete_icon" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                 }
+                 @for (; j < 2; j++)
+                 {
+                     <td></td>
+                 }
+            </tr>
+         }
+        </table>
+*@
+@*below is just a repetition of another item
+    <div class="item_container">
+        <div class="item_display">
+            <img src="https://thumbs.dreamstime.com/b/cosine-graph-cosine-waves-graph-icon-vector-image-can-also-be-used-math-symbols-suitable-mobile-apps-web-apps-print-100322977.jpg" class="item_img" />
+            <div class="desc_container">
+                <p class="item_name"><b>.NET Numerics</b></p>
+                <p>Powerful numerical methods for your .NET simulations.</p>
+            </div>
+        </div>
+    </div>
+    <div class="item_calculator">
+        <div class="calculator">
+            <table>
+                <tr>
+                    <td>
+                    </td>
+                    <td width="100px">
+                        <div class="quantitybtn">
+                            <input type="button" value="-" class="minus" onclick="calculateTotal_item2b()"><input type="number" id="num2" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus" onclick="calculateTotal_item2a()">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>EACH</th>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th>SUBTOTAL</th>
+                    <td>
+                        <div class="item_subprice"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="item_delete">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlP5KUHwia9MiER09OFBNh9TBOr4VFYipC0w&usqp=CAU" class="delete_icon" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>*@
+
+
+

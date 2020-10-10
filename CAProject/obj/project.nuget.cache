@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Pf21EPY9bRDPhJgdxHfsweTLOOrHG5OqsdMlXPF9ipHGutXXjel8qZ2WXfIuVAKQ2EeWrXev/BGM0j6MILS2OA==",
+  "dgSpecHash": "Kh83iqMWeTEePSZtgP/KQ/g2/etm1PgZmyGo9Xc7tVmIoMDwmXkcABWwxLjpr7SRQgfe6dt1t5VR7Hqidy2crw==",
   "success": true,
   "projectFilePath": "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\CAProject.csproj",
   "expectedPackageFiles": [
@@ -47,7 +47,7 @@
     "C:\\Users\\SakuraDemon\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\SakuraDemon\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\SakuraDemon\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
-    "C:\\Users\\SakuraDemon\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
+    "C:\\Users\\SakuraDemon\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
