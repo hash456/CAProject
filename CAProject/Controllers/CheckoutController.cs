@@ -32,9 +32,14 @@ namespace CAProject.Controllers
             }
             int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
 
+            // Stop the user from submitting an empty shopping cart
+            Order exist = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
+            if(exist == null)
+            {
+                return RedirectToAction("Index", "ShoppingCart");
+            }
+            int int_orderid = exist.Id;
 
-            //Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.Id == orderid);
-            int int_orderid = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false).Id;
             Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.Id == int_orderid && x.IsPaid == false);
             order.IsPaid = true;
             order.CheckOutDate = DateTime.Now.ToString();
