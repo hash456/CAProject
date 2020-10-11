@@ -3,6 +3,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Checkout</h1>
+<h2>Your payment is successful. Thank you for shopping with us!</h2>
+<br />
 
-<p>To be replaced with checkout history or redirect to other pages</p>
+<p>You will be redirected to the home page in <span id="time">5</span>.</p>
+
+<script>
+   
+
+    var seconds = 4;
+    setInterval(function () {
+        
+        if (seconds.toString().length == 1) {
+            seconds =  + seconds;
+        }
+
+        document.getElementById("time").innerHTML = seconds;
+        seconds--;
+        if (seconds == 0) {
+            window.location.href = "/Home/Index";
+        }
+    }, 1000);
+</script>
