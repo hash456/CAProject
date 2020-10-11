@@ -37,7 +37,24 @@ namespace CAProject.Controllers
             int int_orderid = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false).Id;
             Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.Id == int_orderid && x.IsPaid == false);
             order.IsPaid = true;
+            order.CheckOutDate = DateTime.Now.ToString();
             db.SaveChanges();
+
+            // Get the List Cart items of that orderId
+            List<Cart> paidItems = db.Cart.Where(x => x.Order.Id == int_orderid).ToList();
+            // Mark the activation code as sold and record it as sold to which orderId to display it for the customer later
+            foreach(Cart item in paidItems)
+            {
+                for(int i = 0; i < item.Quantity; i++)
+                {
+                    ActivationCode activationCode = 
+                        db.ActivationCode.FirstOrDefault(x => x.ProductId == item.ProductId && x.IsSold == false);
+
+                    activationCode.IsSold = true;
+                    activationCode.OrderId = int_orderid;
+                    db.SaveChanges();
+                }
+            }     
 
             order = db.Orders.FirstOrDefault(x => x.UserId == userId);
             if (order.IsPaid)

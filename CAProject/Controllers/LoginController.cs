@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace CAProject.Controllers
 {
@@ -42,6 +43,102 @@ namespace CAProject.Controllers
 
                 db.SaveChanges();
 
+                // Get the Temp Cart
+                List<string> items = new List<string>();
+                int j = 0;
+                string item = "initiate";
+                do
+                {
+                    item = HttpContext.Session.GetString("Product" + Convert.ToString(j));
+                    if (item == null)
+                        break;
+                    items.Add(item);
+                    j++;
+                } while (item != null);
+
+                List<Cart> tempCart = new List<Cart>();
+                foreach (string x in items)
+                {
+                    if (x != "removed product")
+                    {
+                        string[] xx = x.Split(',');
+                        Cart y = new Cart();
+                        y.ProductId = Convert.ToInt32(xx[0]);
+                        y.Quantity = Convert.ToInt32(xx[1]);
+                        tempCart.Add(y);
+                    }
+                }
+
+                // Get the unpaid order if it exist
+                Order order = db.Orders.FirstOrDefault(x => x.UserId == user.Id && x.IsPaid == false);
+
+                // Create new order is user don't have any order yet
+                if (order == null && tempCart.Count > 0)
+                {
+                    db.Orders.Add(new Order
+                    {
+                        UserId = user.Id,
+                        OrderDate = DateTime.Now.ToString()
+                    });
+                    db.SaveChanges();
+
+                    Order newOrder = db.Orders.FirstOrDefault(x => x.UserId == user.Id && x.IsPaid == false);
+
+                    foreach(Cart toAdd in tempCart)
+                    {
+                        db.Cart.Add(new Cart
+                        {
+                            OrderId = newOrder.Id,
+                            ProductId = toAdd.ProductId,
+                            Quantity = toAdd.Quantity
+                        });
+                        db.SaveChanges();
+                    }
+                }
+                // Combine with unpaid order
+                else
+                {
+                    // Get the current unpaid order cart
+                    List<Cart> cart = db.Cart.Where(x => x.OrderId == order.Id).ToList();
+
+                    // Get a dictionary of unpaid order cart and the productID for easy lookup later
+                    Dictionary<int, Cart> lookUpTable = new Dictionary<int, Cart>();
+                    foreach (Cart cartItem in cart)
+                    {
+                        lookUpTable.Add(cartItem.ProductId, cartItem);
+                    }
+
+                    foreach (Cart toAdd in tempCart)
+                    {
+                        // See if the user already has the product in his cart
+                        if (lookUpTable.ContainsKey(toAdd.ProductId))
+                        {
+                            Cart value = lookUpTable[toAdd.ProductId];
+                            // Don't allow combination if the total count is more than our stock
+                            int stockCount =
+                                db.ActivationCode.Where(x => x.ProductId == value.ProductId && x.IsSold == false).Count();
+                            if (value.Quantity + toAdd.Quantity <= stockCount)
+                            {
+                                value.Quantity += toAdd.Quantity;
+                                db.SaveChanges();
+                            }
+                        }
+                        else
+                        {
+                            db.Cart.Add(new Cart
+                            {
+                                OrderId = order.Id,
+                                ProductId = toAdd.ProductId,
+                                Quantity = toAdd.Quantity
+                            });
+                            db.SaveChanges();
+                        }
+                    }
+                }
+
+                // Clear the old session full of temp cart
+                HttpContext.Session.Clear();
+                // Add sessionId
                 HttpContext.Session.SetString("SessionId", guid);
                 ViewData["SessionId"] = guid;
 

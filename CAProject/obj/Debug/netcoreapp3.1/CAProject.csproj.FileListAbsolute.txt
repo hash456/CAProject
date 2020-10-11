@@ -480,3 +480,4 @@ C:\Users\Isabe\CAProject\CAProject\obj\Debug\netcoreapp3.1\staticwebassets\CAPro
 C:\Users\Isabe\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.dll
 C:\Users\Isabe\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.pdb
 C:\Users\Isabe\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.genruntimeconfig.cache
+C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Index.cshtml.g.cs
