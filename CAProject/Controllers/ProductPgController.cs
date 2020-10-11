@@ -21,6 +21,7 @@ namespace CAProject.Controllers
             this.db = db;
         }
 
+        // Display Product Details Page
         public IActionResult Index(int productid)
         {
             var product = db.Product.Where(

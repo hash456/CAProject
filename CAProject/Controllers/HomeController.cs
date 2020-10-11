@@ -23,6 +23,7 @@ namespace CAProject.Controllers
             this.db = db;
         }
 
+        // Display Home Page
         public async Task<IActionResult> Index(int? pageNumber, string search)
         {
             var products = from p in db.Product
@@ -50,6 +51,7 @@ namespace CAProject.Controllers
 
             ViewData["paginatedStockCount"] = paginatedStockCount;
             ViewData["SessionId"] = HttpContext.Session.GetString("SessionId");
+            ViewData["changedCart"] = HttpContext.Session.GetString("updateCartMessage");
 
             return View();
         }

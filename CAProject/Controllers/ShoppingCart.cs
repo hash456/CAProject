@@ -23,6 +23,7 @@ namespace CAProject.Controllers
             this.db = db;
         }
 
+        // Display Shopping Cart
         public IActionResult Index()
         {
             // Get the User ID for the current session
@@ -140,6 +141,7 @@ namespace CAProject.Controllers
             return View();
         }
 
+        // Add items to shopping cart from Home Page and Product Details Page
         public IActionResult UpdateCart([FromBody] CartInput cartInput)
         {
             // Get the User ID for the current session
@@ -277,6 +279,7 @@ namespace CAProject.Controllers
             });
         }
 
+        // Edit items
         public IActionResult ChangeCartQty([FromBody] ChangeQtyInput changeQtyInput)
         {
             // Get the User ID for the current session

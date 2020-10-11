@@ -9,6 +9,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Localization;
 
 namespace CAProject.Controllers
 {
@@ -19,6 +20,9 @@ namespace CAProject.Controllers
             return View();
         }
 
+        // Authorise User
+        // Combine Temp Cart with User's Current Cart
+        // Update user's current cart and remove items that is already sold out
         [HttpPost]
         public IActionResult Auth(string email, string password, [FromServices] DbGallery db)
         {
@@ -96,7 +100,7 @@ namespace CAProject.Controllers
                     }
                 }
                 // Combine with unpaid order
-                else
+                else if (tempCart.Count > 0)
                 {
                     // Get the current unpaid order cart
                     List<Cart> cart = db.Cart.Where(x => x.OrderId == order.Id).ToList();
@@ -141,6 +145,48 @@ namespace CAProject.Controllers
                 // Add sessionId
                 HttpContext.Session.SetString("SessionId", guid);
                 ViewData["SessionId"] = guid;
+
+                string updateCartMessage = "";
+
+                // Check the user's current cart for sold out items
+                Order prevOrder = db.Orders.FirstOrDefault(x => x.UserId == user.Id && x.IsPaid == false);
+                if(prevOrder == null)
+                {
+                    updateCartMessage = "false";
+                }
+                else
+                {
+                    List<Cart> updateCart = db.Cart.Where(x => x.OrderId == prevOrder.Id).ToList();
+                    // For each item in cart, check if we still have stock
+                    foreach(Cart toUpdate in updateCart)
+                    {
+                        int currentStock = 
+                            db.ActivationCode.Where(x => x.ProductId == toUpdate.ProductId && x.IsSold == false).Count();
+
+                        // Remove/change the quantity based on how much stock we have left
+                        if (currentStock == 0)
+                        {
+                            db.Cart.Remove(toUpdate);
+                            updateCartMessage = "true";
+                        }
+                        else if (toUpdate.Quantity > currentStock)
+                        {
+                            toUpdate.Quantity = currentStock;
+                            updateCartMessage = "true";
+                        }
+                        db.SaveChanges();
+
+                        // Check if cart is empty after removing items, remove the orderid
+                        if (db.Cart.FirstOrDefault(x => x.OrderId == prevOrder.Id) == null)
+                        {
+                            db.Orders.Remove(prevOrder);
+                            db.SaveChanges();
+                            updateCartMessage = "true";
+                        }      
+                    }
+                }
+
+                HttpContext.Session.SetString("updateCartMessage", updateCartMessage);
 
                 return RedirectToAction("index", "home");
             }

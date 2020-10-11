@@ -19,6 +19,7 @@ namespace CAProject.Controllers
             this.db = db;
         }
 
+        // Update the database on item sold on checkout
         public IActionResult Index()
         {
             string sessionId = HttpContext.Session.GetString("SessionId");
@@ -54,6 +55,8 @@ namespace CAProject.Controllers
                 {
                     ActivationCode activationCode = 
                         db.ActivationCode.FirstOrDefault(x => x.ProductId == item.ProductId && x.IsSold == false);
+
+                    // error is product is already sold
 
                     activationCode.IsSold = true;
                     activationCode.OrderId = int_orderid;

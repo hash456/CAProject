@@ -49,6 +49,30 @@ namespace CAProject.Db
             });
 
             db.SaveChanges();
+
+            db.Orders.Add(new Order
+            {
+                UserId = 1,
+                OrderDate = DateTime.Now.ToString()
+            });
+
+            db.SaveChanges();
+
+            db.Cart.Add(new Cart
+            {
+                ProductId = 2,
+                OrderId = 2,
+                Quantity = 1
+            });
+
+            db.Cart.Add(new Cart
+            {
+                ProductId = 3,
+                OrderId = 2,
+                Quantity = 1
+            });
+
+            db.SaveChanges();
         }
 
         protected void AddActivationCodes()
