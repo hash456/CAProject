@@ -33,7 +33,6 @@ namespace CAProject.Controllers
             {
                 // Use session storage here if not logged in -- this is the view//
 
-
                 //storage now is "productid, quantity"
 
                 if (string.IsNullOrEmpty(HttpContext.Session.GetString("Product0")))
@@ -59,23 +58,22 @@ namespace CAProject.Controllers
                     j++;
                 } while (item != null);
 
-                Debug.WriteLine(items[0]);
-
                 //CREATE A LIST OF CART ITEMS CALLED CART
                 
 
                 foreach (string x in items)
                 {
-                    string[] xx = x.Split(',');
-                    Cart y = new Cart();
-                    y.ProductId = Convert.ToInt32(xx[0]);
-                    y.Quantity = Convert.ToInt32(xx[0]);
-                    cart.Add(y);
+                    if(x != "removed product")
+                    {
+                        string[] xx = x.Split(',');
+                        Cart y = new Cart();
+                        y.ProductId = Convert.ToInt32(xx[0]);
+                        y.Quantity = Convert.ToInt32(xx[1]);
+                        cart.Add(y);
+                    }
                 }
 
-                Debug.WriteLine(cart[0].ProductId);
                 ViewData["OrderId"] = (int)-1;
-
 
             }
             else
@@ -124,8 +122,7 @@ namespace CAProject.Controllers
                 {
                     Product itemprice = db.Product.Where(x => x.Id == item.ProductId).SingleOrDefault();
                     totalCost += itemprice.Price * item.Quantity;
-                }
-                    
+                }                 
             }
             List<Product> products = new List<Product>();
             for (int i = 0; i < cart.Count; i++)
@@ -143,8 +140,6 @@ namespace CAProject.Controllers
             return View();
         }
 
-
-
         public IActionResult UpdateCart([FromBody] CartInput cartInput)
         {
             // Get the User ID for the current session
@@ -161,14 +156,69 @@ namespace CAProject.Controllers
 
                 int i = 0;
                 string newcartitem = Convert.ToString(productId) + "," + Convert.ToString(quantity);
-
-                while (string.IsNullOrEmpty(HttpContext.Session.GetString("Product" + Convert.ToString(i))) == false)
+                
+                // Get all the temp cart items
+                // items is a dictionary of key = "productId,quanty", value = "Product{j}"
+                Dictionary<string, string> items = new Dictionary<string, string>();
+                int j = 0;
+                string item = "initiate";
+                do
                 {
-                    i++;
+                    item = HttpContext.Session.GetString("Product" + Convert.ToString(j));
+                    if (item == null)
+                        break;
+                    if(item != "removed product")
+                        items.Add(item, "Product" + Convert.ToString(j));
+                    j++;
+                } while (item != null);
+
+
+                // Find if the productId is in the session already
+                bool exist = false;
+                string[] tempProductId = new string[2]; 
+                string tempCartIndex = ""; 
+                foreach (KeyValuePair<string,string> entry in items)
+                {
+                    tempProductId = entry.Key.Split(",");
+                    tempCartIndex = entry.Value;
+                    if(Convert.ToInt32(tempProductId[0]) == productId)
+                    {
+                        exist = true;
+                        break;
+                    }
                 }
 
-                HttpContext.Session.SetString("Product" + Convert.ToString(i), newcartitem);
-                Debug.WriteLine(HttpContext.Session.GetString("Product0"));
+                // If productId is found in the session
+                if (exist)
+                {
+                    string toUpdate = HttpContext.Session.GetString(tempCartIndex);
+                    string[] tempproductIdQty = toUpdate.Split(",");
+                    int tempproductId = Convert.ToInt32(tempproductIdQty[0]);
+                    int tempQty = Convert.ToInt32(tempproductIdQty[1]);
+                    // Check is quantity is more that what we have in stock
+                    if (tempQty < db.ActivationCode.Where(x => x.ProductId == tempproductId && x.IsSold == false).Count())
+                    {
+                        tempQty += quantity;
+                        // Remove the old session storage and add the new one
+                        HttpContext.Session.Remove(tempCartIndex);
+                        string toAdd = Convert.ToString(tempproductId) + "," + Convert.ToString(tempQty);
+                        HttpContext.Session.SetString(tempCartIndex, toAdd);
+                    }
+                    else
+                    {
+                        message = "Reached maximum stock";
+                    }
+                }
+                // If productId is not found in the session
+                else
+                {
+                    while (string.IsNullOrEmpty(HttpContext.Session.GetString("Product" + Convert.ToString(i))) == false)
+                    {
+                        i++;
+                    }
+
+                    HttpContext.Session.SetString("Product" + Convert.ToString(i), newcartitem);
+                }
             }
             
 
@@ -217,7 +267,8 @@ namespace CAProject.Controllers
                     message = "Reached maximum stock";
                 }
 
-                db.SaveChanges(); }
+                db.SaveChanges(); 
+            }
             
             return Json(new
             {
@@ -231,68 +282,117 @@ namespace CAProject.Controllers
             // Get the User ID for the current session
             string sessionId = HttpContext.Session.GetString("SessionId");
 
-            // No sessionId = user not logged in = don't allow them to add to cart for now
-            if (sessionId == null)
-            {
-                return Json(new { status = "error" });
-            }
-            int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
-
-            // Get the order id
-            Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
-
             // Get the productId from string to int
             int productIdNum = Convert.ToInt32(changeQtyInput.ProductId);
 
-            // Find the product in the user cart
-            Cart cart = db.Cart.FirstOrDefault(x => x.ProductId == productIdNum && x.OrderId == order.Id);
-
-            if(changeQtyInput.Action == "minus" && cart.Quantity > 1)
+            // No sessionId = user not logged in = don't allow them to add to cart for now
+            if (sessionId == null)
             {
-                cart.Quantity--;
-            }
-            else if(changeQtyInput.Action == "plus" && 
-                cart.Quantity < db.ActivationCode.Where(x => x.ProductId == cart.ProductId && x.IsSold == false).Count())
-            { 
-                cart.Quantity++;
-            } 
-            else if(changeQtyInput.Action == "remove")
-            {
-                db.Cart.Remove(cart);
-                db.SaveChanges();
-
-                // Check if cart is empty after removing
-                if(db.Cart.FirstOrDefault(x => x.OrderId == order.Id) == null)
+                // Get all the temp cart items
+                // items is a dictionary of key = "productId,quanty", value = "Product{j}"
+                Dictionary<string, string> items = new Dictionary<string, string>();
+                int j = 0;
+                string item = "initiate";
+                do
                 {
-                    // If empty, just remove the order id alltogether
-                    db.Orders.Remove(order);
+                    item = HttpContext.Session.GetString("Product" + Convert.ToString(j));
+                    if (item == null)
+                        break;
+                    if (item != "removed product")
+                        items.Add(item, "Product" + Convert.ToString(j));
+                    j++;
+                } while (item != null);
+
+                // Find the item the user is trying to update
+                bool found = false;
+                string[] tempProductId = new string[2];
+                string tempCartIndex = "";
+                foreach (KeyValuePair<string, string> entry in items)
+                {
+                    tempProductId = entry.Key.Split(",");
+                    tempCartIndex = entry.Value;
+                    if (Convert.ToInt32(tempProductId[0]) == productIdNum)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found)
+                {
+                    string toUpdate = HttpContext.Session.GetString(tempCartIndex);
+                    string[] tempproductIdQty = toUpdate.Split(",");
+                    int tempproductId = Convert.ToInt32(tempproductIdQty[0]);
+                    int tempQty = Convert.ToInt32(tempproductIdQty[1]);
+                    if (changeQtyInput.Action == "minus" && tempQty > 1)
+                    {
+                        tempQty--;
+                        HttpContext.Session.Remove(tempCartIndex);
+                        string toAdd = Convert.ToString(tempproductId) + "," + Convert.ToString(tempQty);
+                        HttpContext.Session.SetString(tempCartIndex, toAdd);
+                    }
+                    else if (changeQtyInput.Action == "plus" &&
+                        tempQty < db.ActivationCode.Where(x => x.ProductId == tempproductId && x.IsSold == false).Count())
+                    {
+                        tempQty++;
+                        HttpContext.Session.Remove(tempCartIndex);
+                        string toAdd = Convert.ToString(tempproductId) + "," + Convert.ToString(tempQty);
+                        HttpContext.Session.SetString(tempCartIndex, toAdd);
+                    }
+                    else if (changeQtyInput.Action == "remove")
+                    {
+                        HttpContext.Session.Remove(tempCartIndex);
+                        // Even if we remove the product, still need a session of "Product{j}" or else will have errors
+                        HttpContext.Session.SetString(tempCartIndex, "removed product");
+                    }
+
+                    return Json(new { status = "success" });
+                }
+                else
+                {
+                    return Json(new { status = "error" });
                 }
             }
-
-            db.SaveChanges();
-
-            return Json(new
+            else
             {
-                status = "success"
-            });
-        }
+                int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
 
-        /*
-        [HttpPost]
-        public IActionResult Checkout(string orderId)
-        {
-            int orderIdNum = Convert.ToInt32(orderId);
+                // Get the order id
+                Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
 
-            //Get List of Cart
-            List<Cart> cart = db.Cart.Where(x => x.OrderId == orderIdNum).ToList();
+                // Find the product in the user cart
+                Cart cart = db.Cart.FirstOrDefault(x => x.ProductId == productIdNum && x.OrderId == order.Id);
 
-            double totalCost = 0;
-            foreach(Cart item in cart)
-            {
-                totalCost += item.Product.Price * item.Quantity;
+                if (changeQtyInput.Action == "minus" && cart.Quantity > 1)
+                {
+                    cart.Quantity--;
+                }
+                else if (changeQtyInput.Action == "plus" &&
+                    cart.Quantity < db.ActivationCode.Where(x => x.ProductId == cart.ProductId && x.IsSold == false).Count())
+                {
+                    cart.Quantity++;
+                }
+                else if (changeQtyInput.Action == "remove")
+                {
+                    db.Cart.Remove(cart);
+                    db.SaveChanges();
+
+                    // Check if cart is empty after removing
+                    if (db.Cart.FirstOrDefault(x => x.OrderId == order.Id) == null)
+                    {
+                        // If empty, just remove the order id alltogether
+                        db.Orders.Remove(order);
+                    }
+                }
+
+                db.SaveChanges();
+
+                return Json(new
+                {
+                    status = "success"
+                });
             }
-
         }
-        */
+
     }
 }
