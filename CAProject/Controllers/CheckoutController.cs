@@ -29,7 +29,7 @@ namespace CAProject.Controllers
             if (sessionId == null)
             {
                 // Use session storage here if not logged in //
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Login", new { FromCheckout = "true" });
             }
             int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
 

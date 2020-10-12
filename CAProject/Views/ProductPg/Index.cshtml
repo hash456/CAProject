@@ -99,36 +99,35 @@
     <br />
 }
 <script>
-    // For average rating only
-    document.getElementById("star_one").className
-    += @avgScore >= 1 ? "fa fa-star checked" : @avgScore >= 0.5
-        ? "fa fa-star-half-o checked"
-            : "fa fa-star";
-
-    document.getElementById("star_two").className
-    += @avgScore >= 2 ? "fa fa-star checked" : @avgScore >= 1.5
-        ? "fa fa-star-half-o checked"
-            : "fa fa-star";
-
-    document.getElementById("star_three").className
-    += @avgScore >= 3 ? "fa fa-star checked" : @avgScore >= 2.5
-        ? "fa fa-star-half-o checked"
-            : "fa fa-star";
-
-    document.getElementById("star_four").className
-    += @avgScore >= 4 ? "fa fa-star checked" : @avgScore >= 3.5
-        ? "fa fa-star-half-o checked"
-            : "fa fa-star";
-
-    document.getElementById("star_five").className
-    += @avgScore >= 5 ? "fa fa-star checked" : @avgScore >= 4.5
-        ? "fa fa-star-half-o checked"
-            : "fa fa-star";
-
-
     window.onload = function () {
         let elem = document.getElementById("AddtoCart");
         elem.addEventListener("submit", AddtoCart);
+
+        // For average rating only
+        document.getElementById("star_one").className
+        += @avgScore >= 1 ? "fa fa-star checked" : @avgScore >= 0.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
+
+        document.getElementById("star_two").className
+        += @avgScore >= 2 ? "fa fa-star checked" : @avgScore >= 1.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
+
+        document.getElementById("star_three").className
+        += @avgScore >= 3 ? "fa fa-star checked" : @avgScore >= 2.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
+
+        document.getElementById("star_four").className
+        += @avgScore >= 4 ? "fa fa-star checked" : @avgScore >= 3.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
+
+        document.getElementById("star_five").className
+        += @avgScore >= 5 ? "fa fa-star checked" : @avgScore >= 4.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
     }
 
     function AddtoCart(event)
