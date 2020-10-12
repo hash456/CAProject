@@ -42,7 +42,7 @@
                         }
                         <li class="nav-item">
                             <form id="search-form" action="/Home/Index" method="post">
-                                <input type="text" id="search" name="search" placeholder="search..." value="@ViewData["search"]" />
+                                <input onkeypress="search()" type="text" id="search" name="search" placeholder="search..." value="@ViewData["search"]" />
                             </form>
                         </li>
                     </ul>
@@ -95,11 +95,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
     <script>
-        window.onload = function () {
-            let search = document.getElementById("search");
-            search.addEventListener("keypress", search);
-        }
-
         function search(event) {
             // Press Enter
             if (event.keyCode === 13) {
