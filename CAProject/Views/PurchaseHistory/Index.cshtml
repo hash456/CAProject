@@ -4,7 +4,6 @@
 @{
     Dictionary<Product, List<ActivationCode>> acLookup = (Dictionary<Product, List<ActivationCode>>)ViewData["acLookup"];
     Dictionary<Order, List<Cart>> cartLookup = (Dictionary<Order, List<Cart>>)ViewData["cartLookup"];
-    List<Order> orders = (List<Order>)ViewData["Order"];
 }
 
 <link href="~/css/OrderHistory.css" rel="stylesheet" type="text/css" />
@@ -17,39 +16,50 @@
 
 @foreach (Order order in cartLookup.Keys)
 {
-    <div class="order-container">
-        <div class="order-id">Order: @order.Id</div>
-        <div class="order-data">Placed on: @order.CheckOutDate</div>
-        <hr />
-        @foreach (Cart cart in cartLookup[order])
-        {
-            <div class="order-item-container">
-                <table style="min-width: 800px; padding-top:15px">
-                    <tr>
-                        <td class="img-cell"><img src=@cart.Product.Image class="order-item-img" /></td>
-                        <td class="des-cell">
-                            <p>@cart.Product.Name</p>
-                        </td>
-                        <td class="qty-cell">
-                            Qty: @cart.Quantity
-                        </td>
-                        <td class="ac-cell">
-                            <span>Activation Codes:</span>
-                            <select id="acs">
-                                @foreach (ActivationCode ac in acLookup[cart.Product])
+<div class="order-container">
+    <div class="order-id">Order: @order.Id</div>
+    <div class="order-data">Placed on: @order.CheckOutDate</div>
+    <hr />
+    @{
+        double totalPrice = 0;
+    }
+    @foreach (Cart cart in cartLookup[order])
+    {
+
+        double subprice = cart.Quantity * cart.Product.Price;
+        totalPrice += subprice;
+
+        <div class="order-item-container">
+            <table style="min-width: 800px; padding-top:15px">
+                <tr>
+                    <td class="img-cell"><img src=@cart.Product.Image class="order-item-img" /></td>
+                    <td class="des-cell">
+                        <p>@cart.Product.Name</p>
+                    </td>
+                    <td class="des-cell">
+                        Qty: @cart.Quantity
+                    </td>
+                    <td class="des-cell">
+                        Price: SGD @subprice
+                    </td>
+                    <td class="ac-cell">
+                        <span>Activation Codes:</span>
+                        <select id="acs">
+                            @foreach (ActivationCode ac in acLookup[cart.Product])
+                            {
+                                if (ac.OrderId == order.Id)
                                 {
-                                    if (ac.OrderId == order.Id)
-                                    {
-                                        <option>@ac.ActivationCodeId</option>
-                                    }
+                                    <option>@ac.ActivationCodeId</option>
                                 }
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        }
-    </div>
+                            }
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+    <div style="margin-bottom: 15px;" class="order-data">Total Price: @totalPrice</div>
+</div>
 }
 
 
