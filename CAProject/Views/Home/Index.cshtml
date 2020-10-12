@@ -4,81 +4,119 @@
     var prevDisabled = !paginatedList.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !paginatedList.HasNextPage ? "disabled" : "";
 
+    List<Cart> cart = (List<Cart>)ViewData["Cart"];
+
     Dictionary<int, int> paginatedStockCount = (Dictionary<int, int>)ViewData["paginatedStockCount"];
+
+    string changedCart = (string)ViewData["changedCart"];
 }
 
-<style>
-    .product-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+<link href="~/css/Home.css" rel="stylesheet" type="text/css" />
 
-    .product-item {
-        display: grid;
-        grid-template-areas: "image" "name" "description" "add-to-cart";
-        grid-template-columns: 1fr;
-        grid-template-rows: 3fr 0.5fr 3fr 1fr;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        justify-items: center;
-        border: 0.1rem solid black;
-        height: 25rem;
-        width: 20rem;
-        margin: 0.5rem;
-        padding-top: 0.5rem;
-    }
+@*
+    <style>
+        .product-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    .product-item a {
-        text-decoration: none;
-    }
+        .product-item {
+            display: grid;
+            grid-template-areas: "image" "name" "description" "add-to-cart";
+            grid-template-columns: 1fr;
+            grid-template-rows: 3fr 0.5fr 3fr 1fr;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+            border: 0.1rem solid black;
+            height: 25rem;
+            width: 20rem;
+            margin: 0.5rem;
+            padding-top: 0.5rem;
+        }
 
-    .product-item a:hover {
-        color: orange;
-    }
+            .product-item a {
+                text-decoration: none;
+            }
 
-    .product-item img {
-        grid-area: image;
-        width: 10rem;
-        height: 10rem;
-        padding: 0.2rem;
-    }
+                .product-item a:hover {
+                    color: orange;
+                }
 
-    .product-item h5 {
-        grid-area: name;
-        display: block;
-        text-align: center;
-        width: 17rem;
-        max-height: 2rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
+            .product-item img {
+                grid-area: image;
+                width: 10rem;
+                height: 10rem;
+                padding: 0.2rem;
+            }
 
-    .product-item p {
-        grid-area: description;
-        text-align: justify;
-        display: block;
-        width: 17rem;
-        max-height: 8rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+            .product-item h5 {
+                grid-area: name;
+                display: block;
+                text-align: center;
+                width: 17rem;
+                max-height: 2rem;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
 
-    .product-item button {
-        grid-area: add-to-cart;
-        width: 17rem;
-        max-height: 4rem;
-    }
+            .product-item p {
+                grid-area: description;
+                text-align: justify;
+                display: block;
+                width: 17rem;
+                max-height: 8rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
 
-    .product-item button:hover:enabled {
-        background-color: orange;
-        color: black;
-    }
-</style>
+            .product-item button {
+                grid-area: add-to-cart;
+                width: 17rem;
+                max-height: 4rem;
+            }
 
+                .product-item button:hover:enabled {
+                    background-color: orange;
+                    color: black;
+                }
+    </style>
+*@
+
+
+<div style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+    <h2>PRODCUTS</h2>
+    <hr />
+</div>
+
+<div>
+    @if (changedCart == "true")
+    {
+        <script>
+            if (sessionStorage.getItem("alerted") == null) {
+                alert("Removed some items from your cart beacuse its sold out");
+                sessionStorage.setItem("alerted", "yes");
+            }
+        </script>
+
+    }
+</div>
+<div>
+    @if (changedCart == "true")
+    {
+        <script>
+            if (sessionStorage.getItem("alerted") == null) {
+                alert("Removed some items from your cart beacuse its sold out");
+                sessionStorage.setItem("alerted", "yes");
+            }
+        </script>
+
+    }
+</div>
 <div class="product-container">
     @foreach (Product product in paginatedList)
     {
@@ -128,20 +166,3 @@
 {
     <script src="~/js/Home_AddToCart.js"></script>
 }
-
-<script>
-    window.onload = function () {
-        // tempCart is a string of productId
-        // 1,2,2 means user currently added product 1 once and product 2 twice
-        let addToCartButton = document.getElementsByClassName("add-to-cart-button");
-        for (let i = 0; i < addToCartButton.length; i++) {
-            addToCartButton[i].onclick = function (event) {
-                let tempCart = sessionStorage.getItem("tempCart");
-                if (tempCart === null)
-                    sessionStorage.setItem("tempCart", event.target.value);
-                else
-                    sessionStorage.setItem("tempCart", tempCart + "," + event.target.value);
-            }
-        }
-    }
-</script>
