@@ -29,6 +29,8 @@ namespace CAProject.Controllers
             var products = from p in db.Product
                            select p;
 
+            ViewData["search"] = search;
+
             // Search functionality
             if (!String.IsNullOrEmpty(search))
             {

@@ -41,9 +41,8 @@
                             </li>
                         }
                         <li class="nav-item">
-                            <form action="/Home/Index" method="post">
-                                <input type="text" id="search" name="search" placeholder="search..." />
-                                <input type="submit" class="btn btn-primary" />
+                            <form id="search-form" action="/Home/Index" method="post">
+                                <input type="text" id="search" name="search" placeholder="search..." value="@ViewData["search"]" />
                             </form>
                         </li>
                     </ul>
@@ -95,5 +94,18 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+    <script>
+        window.onload = function () {
+            let search = document.getElementById("search");
+            search.addEventListener("keypress", search);
+        }
+
+        function search(event) {
+            // Press Enter
+            if (event.keyCode === 13) {
+                document.getElementById("search-form").submit();
+            }
+        }
+    </script>
 </body>
 </html>
