@@ -53,6 +53,19 @@ namespace CAProject.Controllers
 
             ViewData["acLookup"] = acLookUp;
 
+            // Display bubble using user's cart
+            int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
+            Order orderBubble = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
+            if (orderBubble != null)
+            {
+                List<Cart> cart = db.Cart.Where(x => x.OrderId == orderBubble.Id).ToList();
+                ViewData["Cart"] = cart;
+            }
+            else
+            {
+                ViewData["Cart"] = null;
+            }
+
             return View();
         }
     }
