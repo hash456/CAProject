@@ -15,8 +15,20 @@ namespace CAProject.Controllers
 {
     public class LoginController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string FromCheckout)
         {
+            //Checking whether user accessed login from checkout button or not
+
+            if (FromCheckout == "true")
+            {
+                HttpContext.Session.SetString("FromCheckout", "true");
+            }
+            else
+            {
+                HttpContext.Session.SetString("FromCheckout", "false");
+            }
+            Debug.WriteLine(HttpContext.Session.GetString("FromCheckout"));
+
             // Get the Temp Cart to display bubble
             List<string> items = new List<string>();
             int j = 0;
@@ -180,6 +192,9 @@ namespace CAProject.Controllers
                     }
                 }
 
+                Debug.WriteLine(HttpContext.Session.GetString("FromCheckout"));
+                string FromCheckout = HttpContext.Session.GetString("FromCheckout");
+
                 // Clear the old session full of temp cart
                 HttpContext.Session.Clear();
                 // Add sessionId
@@ -228,7 +243,18 @@ namespace CAProject.Controllers
 
                 HttpContext.Session.SetString("updateCartMessage", updateCartMessage);
 
-                return RedirectToAction("index", "home");
+                //redirect to view cart page if checkout button was clicked in temp cart
+                Debug.WriteLine(FromCheckout);
+
+
+                if (FromCheckout == "true")
+                {
+                    return RedirectToAction("Index", "ShoppingCart");
+                }
+                else
+                {
+                    return RedirectToAction("index", "home");
+                }
             }
 
         }

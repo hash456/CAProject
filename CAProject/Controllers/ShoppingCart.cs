@@ -152,7 +152,6 @@ namespace CAProject.Controllers
             int productId = Convert.ToInt32(cartInput.ProductId);
             int quantity = Convert.ToInt32(cartInput.Quantity);
 
-            // No sessionId = user not logged in = don't allow them to add to cart for now
             if (sessionId == null)
             {
 
