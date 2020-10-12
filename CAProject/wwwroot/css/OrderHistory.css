@@ -1,0 +1,24 @@
+﻿.order-item-img {
+    width: 50px;
+    height: 50px;
+}
+
+.img-cell {
+    width: 80px;
+}
+
+.des-cell {
+    width: 320px;
+}
+
+.dty-cell {
+    width: 160px;
+}
+
+.ac-cell {
+    width: 320px;
+}
+
+class order-container {
+    margin-top: 25px;
+}
