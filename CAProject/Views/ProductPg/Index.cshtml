@@ -61,7 +61,7 @@
             </p>
         </td>
         <td style="vertical-align:top; padding:10px">
-            <form id="AddtoCart" product_id="@product.Id" class="div1" method="post" action="/ProductPg/?productid=@product.Id">
+            <form id="AddtoCart" product_id="@product.Id" class="div1">
                 Quantity: <input type="number" id="quantity" name="quantity" value="1" min="1" max="@stockCount" style="font-size: 12px; width:60px" />
                 <br /><br />
                 <button type="submit" style="background-color:darkslategrey; color:floralwhite; border:none">
@@ -135,20 +135,17 @@
         var quantity = document.getElementById("quantity").value;
         var productId = event.currentTarget.getAttribute("product_id");
         var stockcount = @stockCount;
-
         console.log(quantity, productId);
 
         if (stockcount == 0) {
             alert("Product is not available.")
-            return false;
         }
         else if (quantity >= 1 && quantity <= @stockCount) {
             SendToCart(productId, quantity);
-            return true;
         }
-        else {
-            return false;
-        }
+
+        event.preventDefault();
+        return false;
     }
 
     function SendToCart(productId, quantity) {

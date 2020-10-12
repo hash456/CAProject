@@ -38,6 +38,13 @@ namespace CAProject.Controllers
                 acList.AddRange(acs);
             }
 
+            Dictionary<Order, List<Cart>> cartLookUp = new Dictionary<Order, List<Cart>>();
+            foreach(Order order in orders)
+            {
+                List<Cart> cart = db.Cart.Where(x => x.OrderId == order.Id).ToList();
+                cartLookUp.Add(order, cart);
+            }
+
             Dictionary<Product, List<ActivationCode>> acLookUp = new Dictionary<Product, List<ActivationCode>>();
             foreach(ActivationCode ac in acList)
             {
@@ -51,7 +58,22 @@ namespace CAProject.Controllers
                 }
             }
 
+            ViewData["Order"] = orders;
             ViewData["acLookup"] = acLookUp;
+            ViewData["cartLookup"] = cartLookUp;
+
+            // Display bubble using user's cart
+            int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
+            Order orderBubble = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
+            if (orderBubble != null)
+            {
+                List<Cart> cart = db.Cart.Where(x => x.OrderId == orderBubble.Id).ToList();
+                ViewData["Cart"] = cart;
+            }
+            else
+            {
+                ViewData["Cart"] = null;
+            }
 
             return View();
         }
