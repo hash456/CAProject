@@ -113,9 +113,13 @@
                                     int id = cart[i + j].ProductId;
                                     int qty = cart[i + j].Quantity;
                                 }
-                                <img src=@url class="item_img" />
+                                <a href="@Url.Action("Index", "ProductPg", new { productid = cart[i + j].ProductId })">
+                                    <img src=@url class="item_img" />
+                                </a>
                                 <div class="desc_container">
-                                    <p class="item_name"><b>@name</b></p>
+                                    <a href="@Url.Action("Index", "ProductPg", new { productid = cart[i + j].ProductId })">
+                                        <p class="item_name"><b>@name</b></p>
+                                    </a>
                                     <p>@desc</p>
                                 </div>
                             </div>

@@ -19,6 +19,11 @@
     .checked {
         color: orange;
     }
+
+    textarea {
+        white-space: normal;
+        text-align: justify;
+    }
 </style>
 
 <table style="width: 100%">
@@ -74,6 +79,31 @@
 </table>
 <hr style="background-color:dimgrey" />
 <p style="font-size: 20px"><b>Reviews</b></p>
+<br />
+
+
+@if (ViewData["SessionId"] == null)
+{
+    <h4>Login to leave a review</h4>
+}
+else
+{
+    <form method="POST" action="/SubmitReviews/Index">
+        <input type="hidden" name="productid" value="@product.Id" />
+        <label for="rating">Your Rating:</label>
+        <select id="rating" name="rating">
+            <option value="1">1 - Very Bad</option>
+            <option value="2">2 - Bad</option>
+            <option value="3">3 - Average</option>
+            <option selected="selected" value="4">4 - Good</option>
+            <option value="5">5 - Very Good</option>
+        </select>
+        <br />
+        <textarea id="review" name="review" rows="10" cols="60" maxlength="1000" placeholder="Your Review..."></textarea>
+        <br />
+        <button class="btn btn-primary" type="submit">Submit Review</button>
+    </form>
+}
 <br />
 
 @foreach (Review rev in reviews)
