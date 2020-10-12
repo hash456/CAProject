@@ -17,6 +17,41 @@ namespace CAProject.Controllers
     {
         public IActionResult Index()
         {
+            // Get the Temp Cart to display bubble
+            List<string> items = new List<string>();
+            int j = 0;
+            string item = "initiate";
+            do
+            {
+                item = HttpContext.Session.GetString("Product" + Convert.ToString(j));
+                if (item == null)
+                    break;
+                items.Add(item);
+                j++;
+            } while (item != null);
+
+            List<Cart> tempCart = new List<Cart>();
+            foreach (string x in items)
+            {
+                if (x != "removed product")
+                {
+                    string[] xx = x.Split(',');
+                    Cart y = new Cart();
+                    y.ProductId = Convert.ToInt32(xx[0]);
+                    y.Quantity = Convert.ToInt32(xx[1]);
+                    tempCart.Add(y);
+                }
+            }
+
+            if (tempCart.Count > 0)
+            {
+                ViewData["Cart"] = tempCart;
+            }
+            else
+            {
+                ViewData["Cart"] = null;
+            }
+
             return View();
         }
 
@@ -124,6 +159,11 @@ namespace CAProject.Controllers
                             if (value.Quantity + toAdd.Quantity <= stockCount)
                             {
                                 value.Quantity += toAdd.Quantity;
+                                db.SaveChanges();
+                            } 
+                            else if (value.Quantity + toAdd.Quantity > stockCount)
+                            {
+                                value.Quantity = stockCount;
                                 db.SaveChanges();
                             }
                         }

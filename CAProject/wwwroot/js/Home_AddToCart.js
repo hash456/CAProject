@@ -26,6 +26,7 @@ function SendToCart(productId, quantity) {
                 if (this.status === 200 && data.status == "success") {
                     console.log("Successful operation: " + data.status);
                     alert(data.message);
+                    location.reload();
                 }
                 else {
                     // Redirect user to login page if user not yet login

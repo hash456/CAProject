@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    List<Cart> cart = (List<Cart>)ViewData["Cart"];
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,9 +25,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index">View Cart</a>
-                        </li>
                         @if (ViewData["SessionId"] != null)
                         {
                             <li class="nav-item">
@@ -44,6 +44,35 @@
                             </form>
                         </li>
                     </ul>
+                    @{
+                        if (cart == null || cart.Count <= 0)
+                        {
+                            <div style="float:right" id="nav-cart">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+                                    <span class="cart-icon"></span>
+                                    @*<span class="cart-num" id="cart_top_num" style="display:block;">
+                        @ViewData["CartCount"]
+                        </span>*@
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            int item_num = 0;
+                            foreach (Cart item in cart)
+                            {
+                                item_num += item.Quantity;
+                            }
+                            <div style="float:right" id="nav-cart">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+                                    <span class="cart-icon"></span>
+                                    <span class="cart-num" id="cart_top_num" style="display:block;">
+                                        @item_num
+                                    </span>
+                                </a>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </nav>

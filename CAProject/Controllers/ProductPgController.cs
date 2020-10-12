@@ -56,7 +56,63 @@ namespace CAProject.Controllers
                 .Count());
             ViewData["numSold"] = numSold;
 
-            ViewData["SessionId"] = HttpContext.Session.GetString("SessionId");
+            string sessionId = HttpContext.Session.GetString("SessionId");
+            ViewData["SessionId"] = sessionId;
+
+            // Display bubble using user's cart
+            if (sessionId != null)
+            {
+                int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
+                Order order = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
+                if (order != null)
+                {
+                    List<Cart> cart = db.Cart.Where(x => x.OrderId == order.Id).ToList();
+                    ViewData["Cart"] = cart;
+                }
+                else
+                {
+                    ViewData["Cart"] = null;
+                }
+            }
+            // Display bubble using temp cart
+            else
+            {
+                // Get the Temp Cart
+                List<string> items = new List<string>();
+                int j = 0;
+                string item = "initiate";
+                do
+                {
+                    item = HttpContext.Session.GetString("Product" + Convert.ToString(j));
+                    if (item == null)
+                        break;
+                    items.Add(item);
+                    j++;
+                } while (item != null);
+
+                List<Cart> tempCart = new List<Cart>();
+                foreach (string x in items)
+                {
+                    if (x != "removed product")
+                    {
+                        string[] xx = x.Split(',');
+                        Cart y = new Cart();
+                        y.ProductId = Convert.ToInt32(xx[0]);
+                        y.Quantity = Convert.ToInt32(xx[1]);
+                        tempCart.Add(y);
+                    }
+                }
+
+                if (tempCart.Count > 0)
+                {
+                    ViewData["Cart"] = tempCart;
+                }
+                else
+                {
+                    ViewData["Cart"] = null;
+                }
+
+            }
 
             return View();
         }

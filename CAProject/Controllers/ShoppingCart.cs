@@ -109,7 +109,7 @@ namespace CAProject.Controllers
             foreach(Cart item in cart)
             {
                 int count = db.ActivationCode.Where(x => x.ProductId == item.ProductId && x.IsSold == false).Count();
-                stockCount.Add(item.ProductId, count);
+                stockCount.Add(item.ProductId, count - item.Quantity);
             }
 
             double totalCost = 0;
@@ -198,18 +198,19 @@ namespace CAProject.Controllers
                     int tempproductId = Convert.ToInt32(tempproductIdQty[0]);
                     int tempQty = Convert.ToInt32(tempproductIdQty[1]);
                     // Check is quantity is more that what we have in stock
-                    if (tempQty < db.ActivationCode.Where(x => x.ProductId == tempproductId && x.IsSold == false).Count())
+                    if (tempQty + quantity <= db.ActivationCode.Where(x => x.ProductId == tempproductId && x.IsSold == false).Count())
                     {
                         tempQty += quantity;
-                        // Remove the old session storage and add the new one
-                        HttpContext.Session.Remove(tempCartIndex);
-                        string toAdd = Convert.ToString(tempproductId) + "," + Convert.ToString(tempQty);
-                        HttpContext.Session.SetString(tempCartIndex, toAdd);
                     }
                     else
                     {
+                        tempQty = db.ActivationCode.Where(x => x.ProductId == tempproductId && x.IsSold == false).Count();
                         message = "Reached maximum stock";
                     }
+                    // Remove the old session storage and add the new one
+                    HttpContext.Session.Remove(tempCartIndex);
+                    string toAdd = Convert.ToString(tempproductId) + "," + Convert.ToString(tempQty);
+                    HttpContext.Session.SetString(tempCartIndex, toAdd);
                 }
                 // If productId is not found in the session
                 else
@@ -260,12 +261,13 @@ namespace CAProject.Controllers
                     db.Cart.Add(cart);
                 }
                 // Don't allow user to add more that what we have in stock
-                else if (cart.Quantity < db.ActivationCode.Where(x => x.ProductId == cart.ProductId && x.IsSold == false).Count())
+                else if (cart.Quantity + quantity <= db.ActivationCode.Where(x => x.ProductId == cart.ProductId && x.IsSold == false).Count())
                 {
                     cart.Quantity += quantity;
                 }
                 else
                 {
+                    cart.Quantity = db.ActivationCode.Where(x => x.ProductId == cart.ProductId && x.IsSold == false).Count();
                     message = "Reached maximum stock";
                 }
 
