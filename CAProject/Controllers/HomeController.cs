@@ -71,10 +71,14 @@ namespace CAProject.Controllers
                 {
                     ViewData["Cart"] = null;
                 }
+                Session user = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId);
+                ViewData["User"] = user;
             } 
             // Display bubble using temp cart
             else
             {
+                ViewData["User"] = null;
+
                 // Get the Temp Cart
                 List<string> items = new List<string>();
                 int j = 0;

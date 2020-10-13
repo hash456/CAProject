@@ -49,6 +49,8 @@ namespace CAProject.Controllers
             {
                 ViewData["Cart"] = null;
             }
+            
+            ViewData["User"] = null;
 
             return View();
         }

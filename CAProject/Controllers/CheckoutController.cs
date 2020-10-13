@@ -33,6 +33,9 @@ namespace CAProject.Controllers
             }
             int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
 
+            Session user = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId);
+            ViewData["User"] = user;
+
             // Stop the user from submitting an empty shopping cart
             Order exist = db.Orders.FirstOrDefault(x => x.UserId == userId && x.IsPaid == false);
             if(exist == null)
