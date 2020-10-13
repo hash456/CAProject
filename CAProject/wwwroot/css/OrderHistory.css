@@ -3,22 +3,53 @@
     height: 50px;
 }
 
+/*cell spacing*/
+td {
+    padding: 10px;
+}
+
 .img-cell {
     width: 80px;
 }
 
 .des-cell {
-    width: 320px;
+    width: 220px;
 }
 
-.dty-cell {
-    width: 160px;
+.qty-cell {
+    width: 80px;
+}
+
+.price-cell {
+    width: 140px;
 }
 
 .ac-cell {
     width: 320px;
 }
 
-class order-container {
-    margin-top: 25px;
+.order-container {
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+/*font style*/
+.tag {
+    color: darkgray;
+}
+
+.order-total-price {
+    float: right;
+    margin-right: 10px;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.order-id {
+    font-weight: bold;
+}
+
+.order-date {
+    font-size: 12px;
+    color: darkgrey;
 }
