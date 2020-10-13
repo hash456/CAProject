@@ -137,6 +137,8 @@ namespace CAProject.Controllers
             
             ViewData["StockCount"] = stockCount;
 
+            int totalCostmulti100 = Convert.ToInt32(totalCost * 100);
+            HttpContext.Session.SetInt32("TotalCost", totalCostmulti100);
 
             return View();
         }
@@ -396,6 +398,26 @@ namespace CAProject.Controllers
                     status = "success"
                 });
             }
+        }
+
+        //Paypal Payment
+        public IActionResult Paypal()
+        {
+            string sessionId = HttpContext.Session.GetString("SessionId");
+
+            //int orderid = Convert.ToInt32(str_orderid);
+
+            if (sessionId == null)
+            {
+                // Use session storage here if not logged in //
+                return RedirectToAction("Index", "Login", new { FromCheckout = "true" });
+            }
+
+            int totalcostmulti = (int)HttpContext.Session.GetInt32("TotalCost");
+            double totalcost = totalcostmulti / 100.0;
+
+            ViewData["TotalCost"] = totalcost;
+            return View();
         }
 
     }

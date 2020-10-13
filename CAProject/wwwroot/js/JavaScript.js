@@ -13,7 +13,7 @@
             document.getElementById("errPassword").innerHTML = "Password not entered";
             return false;
         }
-
+        
         return true;
     }
 
@@ -24,6 +24,5 @@
             let change = document.getElementById(idname[i]);
             change.innerHTML = "";
         }
-
     }
 }

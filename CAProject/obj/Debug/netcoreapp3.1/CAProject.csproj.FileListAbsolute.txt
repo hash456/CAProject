@@ -314,8 +314,6 @@ C:\Users\Isabe\Documents\ASP.NET\CAProject\CAProject\obj\Debug\netcoreapp3.1\sta
 C:\Users\Isabe\Documents\ASP.NET\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.dll
 C:\Users\Isabe\Documents\ASP.NET\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.pdb
 C:\Users\Isabe\Documents\ASP.NET\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.genruntimeconfig.cache
-C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.csproj.CoreCompileInputs.cache
-C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Index.cshtml.g.cs
 F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\appsettings.Development.json
 F:\Studying Life\GDpiSA\Courses\SA4102\ASP.NET\CA Project\Repo\CAProject\bin\Debug\netcoreapp3.1\appsettings.json
@@ -566,3 +564,9 @@ C:\Users\elmim\Documents\GitHub\CAProject\CAProject\obj\Debug\netcoreapp3.1\stat
 C:\Users\elmim\Documents\GitHub\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.dll
 C:\Users\elmim\Documents\GitHub\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.pdb
 C:\Users\elmim\Documents\GitHub\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.genruntimeconfig.cache
+C:\Users\Isabe\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Paypal.cshtml.g.cs
+C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Paypal.cshtml.g.cs
+C:\Users\SakuraDemon\Desktop\CAProject\CAProject\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
+C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.csproj.CoreCompileInputs.cache
+C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Register\Index.cshtml.g.cs

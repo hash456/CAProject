@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Kh83iqMWeTEePSZtgP/KQ/g2/etm1PgZmyGo9Xc7tVmIoMDwmXkcABWwxLjpr7SRQgfe6dt1t5VR7Hqidy2crw==",
+  "dgSpecHash": "IFV0ftNOjvYq3myMDqK8UKuaGM4EmvdRKo7hDztIjPoWxl2qaIJKg6/C0LWZcQoETMN9ESIyW41g/9md6+fRtg==",
   "success": true,
   "projectFilePath": "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\CAProject.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\SakuraDemon\\.nuget\\packages\\bcrypt.net-next\\4.0.0\\bcrypt.net-next.4.0.0.nupkg.sha512",
     "C:\\Users\\SakuraDemon\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\SakuraDemon\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
     "C:\\Users\\SakuraDemon\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",

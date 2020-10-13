@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BC = BCrypt.Net.BCrypt;
 
 namespace CAProject.Db
 {
@@ -202,7 +203,7 @@ namespace CAProject.Db
                 db.Users.Add(new User()
                 {
                     Email = testers[i] + "@test.com",
-                    Password = testers[i],
+                    Password = BC.HashPassword(testers[i]),
                     Name = testers[i]
                 });
             }
