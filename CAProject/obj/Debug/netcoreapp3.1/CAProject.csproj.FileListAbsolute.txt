@@ -566,3 +566,4 @@ C:\Users\elmim\Documents\GitHub\CAProject\CAProject\obj\Debug\netcoreapp3.1\stat
 C:\Users\elmim\Documents\GitHub\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.dll
 C:\Users\elmim\Documents\GitHub\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.pdb
 C:\Users\elmim\Documents\GitHub\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.genruntimeconfig.cache
+C:\Users\Isabe\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\ShoppingCart\Paypal.cshtml.g.cs
