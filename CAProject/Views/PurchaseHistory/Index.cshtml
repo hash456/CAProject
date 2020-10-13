@@ -32,9 +32,16 @@
         <div class="order-item-container">
             <table style="min-width: 800px; padding-top:15px">
                 <tr>
-                    <td class="img-cell"><img src=@cart.Product.Image class="order-item-img" /></td>
+
+                    <td class="img-cell">
+                        <a href="@Url.Action("Index", "ProductPg", new { productid = cart.Product.Id })">
+                            <img src=@cart.Product.Image class="order-item-img" />
+                        </a>
+                    </td>
                     <td class="des-cell">
-                        <p>@cart.Product.Name</p>
+                        <a href="@Url.Action("Index", "ProductPg", new { productid = cart.Product.Id })">
+                            <p>@cart.Product.Name</p>
+                        </a>
                     </td>
                     <td class="des-cell">
                         Qty: @cart.Quantity

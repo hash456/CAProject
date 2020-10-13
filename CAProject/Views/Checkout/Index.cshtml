@@ -6,7 +6,7 @@
 <h2>Your payment is successful. Thank you for shopping with us!</h2>
 <br />
 
-<p>You will be redirected to the home page in <span id="time">5</span>.</p>
+<p>You will be redirected to your order history in <span id="time">5</span>.</p>
 
 <script>
    
@@ -21,7 +21,7 @@
         document.getElementById("time").innerHTML = seconds;
         seconds--;
         if (seconds == 0) {
-            window.location.href = "/Home/Index";
+            window.location.href = "/PurchaseHistory/Index";
         }
     }, 1000);
 </script>
