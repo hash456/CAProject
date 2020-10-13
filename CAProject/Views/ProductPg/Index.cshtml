@@ -8,6 +8,8 @@
     int numSold = (int)ViewData["numSold"];
 }
 
+<link href="~/css/StarRating.css" rel="stylesheet" type="text/css" />
+
 <style>
     .div1 {
         width: 250px;
@@ -78,8 +80,23 @@
     </tr>
 </table>
 <hr style="background-color:dimgrey" />
+
+@*@@if (ViewData["SessionId"] != null)
+{
+    <p style="font-size: 20px"><b>You might also like</b></p>
+    <div>
+        <table>
+            <tr>
+                <td rowspan="2"><img="#" /></td>
+                <td>name</td>
+                <td>rating</td>
+            </tr>
+        </table>
+    </div>
+
 <p style="font-size: 20px"><b>Reviews</b></p>
-<br />
+<br />*@
+
 
 
 @if (ViewData["SessionId"] == null)
@@ -90,14 +107,24 @@ else
 {
     <form method="POST" action="/SubmitReviews/Index">
         <input type="hidden" name="productid" value="@product.Id" />
-        <label for="rating">Your Rating:</label>
-        <select id="rating" name="rating">
-            <option value="1">1 - Very Bad</option>
-            <option value="2">2 - Bad</option>
-            <option value="3">3 - Average</option>
-            <option selected="selected" value="4">4 - Good</option>
-            <option value="5">5 - Very Good</option>
-        </select>
+        <span for="rating">Your Rating:</span>
+
+        <div class="start-container">
+            <div class="star-widget">
+                <input type="radio" name="rating" id="rate-5" value="5">
+                <label for="rate-5" class="fa fa-star"></label>
+                <input type="radio" name="rating" id="rate-4" value="4">
+                <label for="rate-4" class="fa fa-star"></label>
+                <input type="radio" name="rating" id="rate-3" value="3">
+                <label for="rate-3" class="fa fa-star"></label>
+                <input type="radio" name="rating" id="rate-2" value="2">
+                <label for="rate-2" class="fa fa-star"></label>
+                <input type="radio" name="rating" id="rate-2" value="1">
+                <input type="radio" name="rating" id="rate-1">
+                <label for="rate-1" class="fa fa-star"></label>
+            </div>
+        </div>
+        <br />
         <br />
         <textarea id="review" name="review" rows="10" cols="60" maxlength="1000" placeholder="Your Review..."></textarea>
         <br />
@@ -105,6 +132,31 @@ else
     </form>
 }
 <br />
+
+
+@*@if (ViewData["SessionId"] == null)
+    {
+        <h4>Login to leave a review</h4>
+    }
+    else
+    {
+        <form method="POST" action="/SubmitReviews/Index">
+            <input type="hidden" name="productid" value="@product.Id" />
+            <label for="rating">Your Rating:</label>
+            <select id="rating" name="rating">
+                <option value="1">1 - Very Bad</option>
+                <option value="2">2 - Bad</option>
+                <option value="3">3 - Average</option>
+                <option selected="selected" value="4">4 - Good</option>
+                <option value="5">5 - Very Good</option>
+            </select>
+            <br />
+            <textarea id="review" name="review" rows="10" cols="60" maxlength="1000" placeholder="Your Review..."></textarea>
+            <br />
+            <button class="btn btn-primary" type="submit">Submit Review</button>
+        </form>
+    }
+    <br />*@
 
 @foreach (Review rev in reviews)
 {
