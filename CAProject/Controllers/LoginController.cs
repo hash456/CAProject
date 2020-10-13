@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Localization;
+using BC = BCrypt.Net.BCrypt;
+
 
 namespace CAProject.Controllers
 {
@@ -28,6 +30,10 @@ namespace CAProject.Controllers
                 HttpContext.Session.SetString("FromCheckout", "false");
             }
             Debug.WriteLine(HttpContext.Session.GetString("FromCheckout"));
+
+            Debug.WriteLine(HttpContext.Session.GetString("RegisterSuccessful"));
+            ViewData["newRegister"] = HttpContext.Session.GetString("RegisterSuccessful");
+            HttpContext.Session.Remove("RegisterSuccessful");
 
             // Get the Temp Cart to display bubble
             List<string> items = new List<string>();
@@ -74,15 +80,17 @@ namespace CAProject.Controllers
         public IActionResult Auth(string email, string password, [FromServices] DbGallery db)
         {
             Debug.WriteLine($"email: {email} password: {password}");
-            User user = db.Users.FirstOrDefault(x =>
-                x.Email == email && x.Password == password);
+            User user = db.Users.FirstOrDefault(x => x.Email == email);
 
             if (user == null)
             {
                 ViewData["errMsg"] = "Email or incorrect password.";
                 return View("Index");
             }
-            else 
+            string hashPassword = user.Password;
+            bool verified = BC.Verify(password, hashPassword);
+
+            if(verified == true) 
             {
                 // Give User a new SessionId
                 string guid = Guid.NewGuid().ToString();
@@ -255,6 +263,11 @@ namespace CAProject.Controllers
                 {
                     return RedirectToAction("index", "home");
                 }
+            }
+            else
+            {
+                ViewData["errMsg"] = "Email or incorrect password.";
+                return View("Index");
             }
 
         }

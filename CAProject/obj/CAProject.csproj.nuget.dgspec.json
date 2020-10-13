@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Isabe\\CAProject\\CAProject\\CAProject.csproj": {}
+    "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\CAProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Isabe\\CAProject\\CAProject\\CAProject.csproj": {
+    "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\CAProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Isabe\\CAProject\\CAProject\\CAProject.csproj",
+        "projectUniqueName": "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\CAProject.csproj",
         "projectName": "CAProject",
-        "projectPath": "C:\\Users\\Isabe\\CAProject\\CAProject\\CAProject.csproj",
-        "packagesPath": "C:\\Users\\Isabe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Isabe\\CAProject\\CAProject\\obj\\",
+        "projectPath": "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\CAProject.csproj",
+        "packagesPath": "C:\\Users\\SakuraDemon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SakuraDemon\\Desktop\\CAProject\\CAProject\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Isabe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\SakuraDemon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -38,6 +42,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "Microsoft.AspNetCore.Session": {
               "target": "Package",
               "version": "[2.2.0, )"
