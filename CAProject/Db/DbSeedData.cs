@@ -215,7 +215,7 @@ namespace CAProject.Db
             db.Review.Add(new Review
             {
                 UserName = "Alice",
-                DateReviewed = "19 October 2019",
+                DateReviewed = "21/09/2020 11:36:23 am",
                 Rating = 3,
                 ProductId = 1,
                 MainReview = "This program has caused me a lot of suffering."
@@ -225,7 +225,7 @@ namespace CAProject.Db
             db.Review.Add(new Review
             {
                 UserName = "Brian",
-                DateReviewed = "21 October 2019",
+                DateReviewed = "09/09/2020 9:17:54 am",
                 Rating = 5,
                 ProductId = 1,
                 MainReview = "whewwhew avniafnifladjfsjlsjjisdfjsojdfsoijfsoidjfosfjoisdjofsdijo sdfio sdifjosdfj sdfioqdo aijvijne qwidjoc qqefow qwioqj dq qwoijfq jefew qwoeiq oajsfoas adijoadij saijaoisdja aosijcas asodij qwijd j"
@@ -235,7 +235,7 @@ namespace CAProject.Db
             db.Review.Add(new Review
             {
                 UserName = "Brian",
-                DateReviewed = "21 October 2019",
+                DateReviewed = "01/10/2020 10:55:54 am",
                 Rating = 5,
                 ProductId = 2,
                 MainReview = "whewwhew kana kana"
@@ -245,7 +245,7 @@ namespace CAProject.Db
             db.Review.Add(new Review
             {
                 UserName = "Brian",
-                DateReviewed = "21 October 2019",
+                DateReviewed = "05/10/2020 10:31:04 am",
                 Rating = 5,
                 ProductId = 3,
                 MainReview = "whewwhew kana kana"
@@ -255,7 +255,7 @@ namespace CAProject.Db
             db.Review.Add(new Review
             {
                 UserName = "Alice",
-                DateReviewed = "21 October 2019",
+                DateReviewed = "03/10/2020 11:59:20 am",
                 Rating = 4,
                 ProductId = 3,
                 MainReview = "whewwhew kana kana"
