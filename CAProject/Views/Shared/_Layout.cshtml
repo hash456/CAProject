@@ -1,5 +1,6 @@
 ﻿@{ 
     List<Cart> cart = (List<Cart>)ViewData["Cart"];
+    Session user = (Session)ViewData["User"];
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +25,13 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (ViewData["SessionId"] != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Hello, @user.User.Name!</a>
+                            </li>
+                           
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>

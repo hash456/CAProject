@@ -24,6 +24,9 @@ namespace CAProject.Controllers
             User user = db.Users.FirstOrDefault(x => x.Id == session.UserId);
             ViewData["SessionId"] = sessionId;
 
+            Session userr = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId);
+            ViewData["User"] = userr;
+
             List<Order> orders = db.Orders.Where(x => x.UserId == user.Id && x.IsPaid == true).ToList();
             if(orders.Count < 0)
             {

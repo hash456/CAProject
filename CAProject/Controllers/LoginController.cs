@@ -19,6 +19,8 @@ namespace CAProject.Controllers
     {
         public IActionResult Index(string FromCheckout)
         {
+            
+            ViewData["User"] = null;
             //Checking whether user accessed login from checkout button or not
 
             if (FromCheckout == "true")

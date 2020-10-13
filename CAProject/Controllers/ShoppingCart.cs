@@ -32,6 +32,8 @@ namespace CAProject.Controllers
             // No sessionId = user not logged in = don't allow them to add to cart for now
             if (sessionId == null)
             {
+                
+                ViewData["User"] = null;
                 // Use session storage here if not logged in -- this is the view//
 
                 //storage now is "productid, quantity"
@@ -81,6 +83,9 @@ namespace CAProject.Controllers
             {
                 int userId = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId).UserId;
                 ViewData["SessionId"] = sessionId;
+
+                Session user = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId);
+                ViewData["User"] = user;
 
                 // Combine the session and db cart //
 
@@ -417,6 +422,9 @@ namespace CAProject.Controllers
             double totalcost = totalcostmulti / 100.0;
 
             ViewData["TotalCost"] = totalcost;
+            Session user = db.Sessions.FirstOrDefault(x => x.SessionId == sessionId);
+            ViewData["SessionId"] = sessionId;
+            ViewData["User"] = user;
             return View();
         }
 
