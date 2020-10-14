@@ -6,6 +6,8 @@
     double avgScore = (double)ViewData["avgScore"];
     int stockCount = (int)ViewData["stockCount"];
     int numSold = (int)ViewData["numSold"];
+    List<double> TReviews = (List<double>)ViewData["TopReviews"];
+    Dictionary<double, Product> pRatingLookup = (Dictionary<double, Product>)ViewData["PDictionary"];
 }
 
 <link href="~/css/StarRating.css" rel="stylesheet" type="text/css" />
@@ -80,6 +82,50 @@
     </tr>
 </table>
 <hr style="background-color:dimgrey" />
+
+<p style="font-size: 20px"><b>You might also like</b></p>
+    <div>
+        @foreach (double rating in TReviews)
+            {
+                if (pRatingLookup[rating].Id != product.Id)
+                    {
+                    <div style="float:left; margin:10px">
+                        <div style="float:left; margin: 5px">
+                            <img src=@pRatingLookup[rating].Image width="40" height="40" />
+                        </div>
+                        <table>
+                            <tr>
+                                <td><a href="@Url.Action("Index", "ProductPg", new { productid = pRatingLookup[rating].Id })">@pRatingLookup[rating].Name</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        if (rating - i >= 1)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                        }
+                                        else if (rating - i < 1 && rating - i > 0)
+                                        {
+                                            <span class="fa fa-star-half-o checked"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="fa fa-star"></span>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            }
+    </div>
+<br />
+
+<div style="height:50px"></div>
+<p style="font-size: 20px"><b>Reviews</b></p>
+<br />
 
 @*@@if (ViewData["SessionId"] != null)
 {

@@ -33,6 +33,46 @@ namespace CAProject.Controllers
                 x => x.ProductId == product.Id).ToList();
             ViewData["reviews"] = reviews;
 
+            // Get all reviews
+            List<Review> allReviews = db.Review.ToList();
+
+            // Get a list of product with reviews
+            List<int> hasReview = new List<int>();
+            hasReview = db.Review.Select(x => x.ProductId).Distinct().ToList();
+
+            // Get avg ratings for each product
+            List<double> avgRatings = new List<double>();
+            for (int i = 0; i < hasReview.Count; i++)
+            {
+                var review_each = db.Review.Where(x => x.ProductId == hasReview[i]);
+                double avgnum = Convert.ToDouble(review_each.Average(x => x.Rating));
+                avgnum = Math.Round(avgnum, 1);
+                avgRatings.Add(avgnum);
+            }
+
+            // Create a dictionary for product and avg rating
+            Dictionary<double, Product> pRatingLookup = new Dictionary<double, Product>();
+            for (int i = 0; i < avgRatings.Count; i++)
+            {
+                Product p = new Product();
+                p = db.Product.FirstOrDefault(x => x.Id == hasReview[i]);
+                if(pRatingLookup.ContainsKey(avgRatings[i]) == false)
+                {
+                    pRatingLookup.Add(avgRatings[i], p);
+                }
+            }
+            ViewData["PDictionary"] = pRatingLookup;
+
+            // Get top 3 
+            List<double> rvs = avgRatings.OrderByDescending(x => x).Distinct().ToList();
+            List<double> TopReviews = new List<double>();
+            for (int i = 0; i < 3; i++)
+            {
+                if (rvs.Count > i)
+                    TopReviews.Add(rvs[i]);
+            }
+            ViewData["TopReviews"] = TopReviews;
+
             int numReviews = Convert.ToInt32(reviews.Count());
             ViewData["numReviews"] = numReviews;
 
