@@ -19,7 +19,7 @@ namespace CAProject.Models
         public string Description { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(1000)]
         public string Image { get; set; }
 
         [Required]
