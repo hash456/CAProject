@@ -24,7 +24,7 @@ namespace CAProject.Db
             AddUsers();
             AddReviews();
             AddActivationCodes();
-            AddOrders();
+            // AddOrders();
         }
 
         protected void AddOrders()
