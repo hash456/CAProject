@@ -70,31 +70,6 @@
 </div>
 <div style="clear:both"></div>
 
-@*Not sure how you style your page, added some simple cart for now just to show the correct info
-    <div class="cart-container">
-        @for (int i = 0; i < cart.Count; i++)
-        {
-            <div class="cart-items">
-                <span>
-                    @product[i].Name
-                    <img class="cart-image" src=@product[i].Image alt=@product[i].Name />
-                </span>
-                <span class="quantitybtn">
-                    <input type="button" value="-" class="minus" product_id="@cart[i].ProductId" id="item_minus">
-                    <input type="hidden" name="productId" value="@cart[i].ProductId" />
-                    <input type="number" name="quantity" value="@cart[i].Quantity"  id="item_input" min="1" max="@stockCount[cart[i].ProductId]"  title="Qty" class="input-text">
-                    <input type="button" value="+" class="plus" product_id="@cart[i].ProductId" id="item_plus">
-                    <button product_id="@cart[i].ProductId" class="btn btn-danger ml-2 remove">Remove</button>
-                </span>
-            </div>
-        }
-    </div>
-    <form method="post" action="/ShoppingCart/Checkout">
-         <input type="hidden" name="orderId" value="@orderId"/>
-         <button type="submit">CheckOut</button>
-    </form>*@
-
-
 <table>
     @for (int i = 0; i < cart.Count; i += 2)
     {
@@ -239,53 +214,6 @@
     }
 
 </script>
-
-
-
-@*below is just a repetition of another item
-    <div class="item_container">
-        <div class="item_display">
-            <img src="https://thumbs.dreamstime.com/b/cosine-graph-cosine-waves-graph-icon-vector-image-can-also-be-used-math-symbols-suitable-mobile-apps-web-apps-print-100322977.jpg" class="item_img" />
-            <div class="desc_container">
-                <p class="item_name"><b>.NET Numerics</b></p>
-                <p>Powerful numerical methods for your .NET simulations.</p>
-            </div>
-        </div>
-    </div>
-    <div class="item_calculator">
-        <div class="calculator">
-            <table>
-                <tr>
-                    <td>
-                    </td>
-                    <td width="100px">
-                        <div class="quantitybtn">
-                            <input type="button" value="-" class="minus" onclick="calculateTotal_item2b()"><input type="number" id="num2" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text" size="4" pattern="" inputmode=""><input type="button" value="+" class="plus" onclick="calculateTotal_item2a()">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>EACH</th>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <th>SUBTOTAL</th>
-                    <td>
-                        <div class="item_subprice"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <div class="item_delete">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlP5KUHwia9MiER09OFBNh9TBOr4VFYipC0w&usqp=CAU" class="delete_icon" />
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>*@
 
 
 

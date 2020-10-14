@@ -572,4 +572,3 @@ C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProje
 C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Register\Index.cshtml.g.cs
 C:\Users\Isabe\CAProject\CAProject\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll
 C:\Users\Isabe\CAProject\CAProject\obj\Debug\netcoreapp3.1\Razor\Views\Register\Index.cshtml.g.cs
-C:\Users\SakuraDemon\Desktop\CAProject\CAProject\obj\Debug\netcoreapp3.1\CAProject.csprojAssemblyReference.cache

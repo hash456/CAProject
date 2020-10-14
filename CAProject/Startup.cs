@@ -29,18 +29,6 @@ namespace CAProject
         {
             services.AddControllersWithViews();
             services.AddSession();
-            /*
-            services.AddDistributedMemoryCache();
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true; // consent required
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-            services.AddSession(opts =>
-            {
-                opts.Cookie.IsEssential = true; // make the session cookie Essential
-            });
-            */
 
             // add our database context into DI container
             services.AddDbContext<DbGallery>(opt =>

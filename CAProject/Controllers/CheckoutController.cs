@@ -76,36 +76,5 @@ namespace CAProject.Controllers
 
             return View();
         }
-        //public IActionResult Index([FromBody]Order orders)
-        //{
-        //    int orderid = orders.Id;
-        //    bool Paid = orders.IsPaid;
-
-        //    return Json(new
-        //    {
-        //        status = "success"
-        //    });
-        //}
-
-        //function Checkout()
-        //{
-        //    let xhr = new XMLHttpRequest();
-        //    xhr.open("POST", "/Checkout/Index");
-        //    xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
-
-        //    xhr.onreadystatechange = function() {
-        //        if (this.status === 200 && data.status == "success")
-        //        {
-        //            {
-        //                let data = JSON.parse(this.responseText);
-        //                console.log = ("Operation: " + data.status);
-
-
-        //            }
-        //        }
-        //        xhr.send(JSON.stringify({ Id: 3, IsPaid: true }));
-        //    }
-        //}
-
     }
 }

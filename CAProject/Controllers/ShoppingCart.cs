@@ -410,11 +410,8 @@ namespace CAProject.Controllers
         {
             string sessionId = HttpContext.Session.GetString("SessionId");
 
-            //int orderid = Convert.ToInt32(str_orderid);
-
             if (sessionId == null)
             {
-                // Use session storage here if not logged in //
                 return RedirectToAction("Index", "Login", new { FromCheckout = "true" });
             }
 
