@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    List<Cart> cart = (List<Cart>)ViewData["Cart"];
+    Session user = (Session)ViewData["User"];
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,23 +10,78 @@
     <title>@ViewData["Title"] - CAProject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CAProject</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/Logo1.png" alt=".Net Ganges" style="width: 9rem;"/>
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (ViewData["SessionId"] != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Hello, @user.User.Name!</a>
+                            </li>
+                           
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @if (ViewData["SessionId"] != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PurchaseHistory" asp-action="Index">Order History</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
+                            </li>
+                        }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Sign In</a>
+                            <form class="form-inline" id="search-form" action="/Home/Index" method="post">
+                                <input class="form-control ml-auto" onkeypress="search()" type="text" id="search" name="search" placeholder="search..." value="@ViewData["search"]" />
+                            </form>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            @{
+                                if (cart == null || cart.Count <= 0)
+                                {
+                                    <div class="ml-auto" id="nav-cart">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+                                            <span class="cart-icon"></span>
+                                        </a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    int item_num = 0;
+                                    foreach (Cart item in cart)
+                                    {
+                                        item_num += item.Quantity;
+                                    }
+                                    <div class="ml-auto" id="nav-cart">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="ShoppingCart" asp-action="Index">
+                                            <span class="cart-icon"></span>
+                                            <span class="cart-num" id="cart_top_num" style="display:block;">
+                                                @item_num
+                                            </span>
+                                        </a>
+                                    </div>
+                                }
+                            }
                         </li>
                     </ul>
                 </div>
@@ -44,5 +103,13 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+    <script>
+        function search(event) {
+            // Press Enter
+            if (event.keyCode === 13) {
+                document.getElementById("search-form").submit();
+            }
+        }
+    </script>
 </body>
 </html>

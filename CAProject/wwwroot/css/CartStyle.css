@@ -1,0 +1,121 @@
+﻿#wrapper {
+    min-width: 1000px;
+}
+
+.cart_header {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*font style for different element*/
+.cart_header, .item_calculator {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.item_name {
+    font-size: 18px;
+}
+
+#cart_total {
+    font-size: 22px;
+}
+
+/*position for each item*/
+.cart_content {
+    margin-top: 120px;
+    flex-direction: row;
+}
+
+
+
+.viewcart {
+    float: left;
+}
+
+.price {
+    float: right;
+}
+
+
+/*header buttons*/
+.cont_shopping, .checkout {
+    background-color: #a7b3b8;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn_wrapper {
+    margin-left: 15px;
+}
+
+.cont_shopping:hover, .checkout:hover {
+    background-color: #737373;
+}
+/*.header_table > td div {
+    position: relative;
+}
+
+.btn_wrapper {
+    position: absolute;
+    left: 20px;
+}*/
+
+.item_container {
+    float: left;
+    flex-direction: column;
+}
+
+/*item description*/
+.item_display {
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    margin-left: 10px;
+    min-height: 450px;
+}
+
+.item_img {
+    
+    height: 180px;
+    margin-top: 20px;
+}
+
+.desc_container {
+    padding: 10px;
+}
+
+/*Price Calculator for each item*/
+.item_calculator {
+    float: left;
+    display: table-cell;
+    margin-top: 15%;
+    padding-left: 35px;
+    padding-right: 50px;
+    flex-direction: column;
+}
+
+.remove {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.item_calculator td > div {
+    position: relative;
+}
+
+.item_delete {
+    position: absolute;
+    left: 60px;
+}
+
+.calculator th {
+    width: 100px;
+    font-size: 17px;
+}

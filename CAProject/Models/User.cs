@@ -16,8 +16,12 @@ namespace CAProject.Models
         public string Email { get; set; }
 
         [Required]
-        [MaxLength(25)]
+        [MaxLength(100)]
         public string Password { get; set; }
+
+        [Required]
+        [MaxLength(25)]
+        public string Name { get; set; }
     }
 }
 

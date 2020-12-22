@@ -1,115 +1,93 @@
-﻿@model PaginatedList<Product>
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    PaginatedList<Product> paginatedList = (PaginatedList<Product>)ViewData["paginatedList"];
+    var prevDisabled = !paginatedList.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !paginatedList.HasNextPage ? "disabled" : "";
+
+    List<Cart> cart = (List<Cart>)ViewData["Cart"];
+
+    Dictionary<int, int> paginatedStockCount = (Dictionary<int, int>)ViewData["paginatedStockCount"];
+
+    string changedCart = (string)ViewData["changedCart"];
 }
 
-<style>
-    .product-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+<link href="~/css/Home.css" rel="stylesheet" type="text/css" />
 
-    .product-item {
-        display: grid;
-        grid-template-areas: "image" "name" "description" "add-to-cart";
-        grid-template-columns: 1fr;
-        grid-template-rows: 3fr 0.5fr 3fr 1fr;
-        align-content: center;
-        justify-content: center;
-        border: 0.1rem solid black;
-        height: 25rem;
-        width: 15rem;
-        margin: 0.5rem;
-        padding-top: 0.5rem;
-    }
+<div style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+    <h2>PRODUCTS</h2>
+    <hr />
+</div>
 
-    .product-item li {
-        list-style-type: none;
-    }
-
-    .product-item a {
-        text-decoration: none;
-    }
-
-    .product-item a:hover {
-        color: orange;
-    }
-
-    .product-item img {
-        grid-area: image;
-        width: 10rem;
-        height: 10rem;
-        padding: 0.2rem;
-    }
-
-    .product-item h4 {
-        grid-area: name;
-        display: block;
-        text-align: center;
-        width: 10rem;
-        max-height: 3rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    .product-item p {
-        grid-area: description;
-        display: block;
-        width: 10rem;
-        max-height: 8rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .product-item button {
-        grid-area: add-to-cart;
-        width: 10rem;
-    }
-
-    .product-item button:hover {
-        background-color: orange;
-        color: black;
-    }
-</style>
-
-<div class="product-container">
-    @foreach (Product product in Model)
+<div>
+    @if (changedCart == "true")
     {
-        <ul class="product-item">
-            <li>
-                <a href="#">
+        <script>
+            if (sessionStorage.getItem("alerted") == null) {
+                alert("Removed some items from your cart beacuse its sold out");
+                sessionStorage.setItem("alerted", "yes");
+            }
+        </script>
+
+    }
+</div>
+<div>
+    @if (changedCart == "true")
+    {
+        <script>
+            if (sessionStorage.getItem("alerted") == null) {
+                alert("Removed some items from your cart beacuse its sold out");
+                sessionStorage.setItem("alerted", "yes");
+            }
+        </script>
+
+    }
+</div>
+<div class="product-container">
+    @foreach (Product product in paginatedList)
+    {
+        <div class="product-item">
+            <div>
+                <a href="@Url.Action("Index", "ProductPg", new { productid = product.Id })">
                     <img src=@product.Image alt=@product.Name />
                 </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h4>@product.Name</h4>
+            </div>
+            <div>
+                <a href="@Url.Action("Index", "ProductPg", new { productid = product.Id })">
+                    <h5>@product.Name</h5>
                 </a>
-            </li>
-            <li>
+            </div>
+            <div>
                 <p>@product.Description</p>
-            </li>
-            <li>
-                <button class="btn btn-primary"><span class="mr-1">$@product.Price</span>Add To Cart</button>
-            </li>
-        </ul>
+            </div>
+            <div>
+                @if (paginatedStockCount[product.Id] > 0)
+                {
+                    <button class="btn btn-primary add-to-cart" product_id=@product.Id><span class="mr-1">$@product.Price</span>Add To Cart</button>
+                }
+                else
+                {
+                    <button value=@product.Id class="btn btn-danger" disabled>
+                        Out Of Stock
+                    </button>
+                }
+            </div>
+        </div>
     }
 </div>
 
 <a asp-action="Index"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-pageNumber="@(paginatedList.PageIndex - 1)"
    class="btn btn-default @prevDisabled">
     Previous
 </a>
 
 <a asp-action="Index"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-pageNumber="@(paginatedList.PageIndex + 1)"
    class="btn btn-default @nextDisabled">
     Next
 </a>
+
+@section Scripts
+{
+    <script src="~/js/Home_AddToCart.js"></script>
+}

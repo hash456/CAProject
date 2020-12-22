@@ -69,3 +69,38 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.cart-icon {
+    position: absolute;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQUdOGPWA6BxpIzX-Kyl_DAtgVfzZI-2TNITg&usqp=CAU);
+    background-size: cover;
+    width: 29px;
+    height: 26px;
+    left: 50%;
+    top: 50%;
+    margin: -12px 0 0 -14px;
+}
+
+#nav-cart {
+    display: inline-block;
+    height: 38px;
+    width: 40px;
+    position: relative;
+    margin: 0 0 0 20px;
+}
+
+.cart-num {
+    position: absolute;
+    background: #f36e36;
+    color: #fff;
+    top: -4px;
+    font-weight: 400;
+    right: -4px;
+    text-align: center;
+    border: 3px solid #f36e36;
+    font-size: 13px;
+    min-width: 14px;
+    line-height: 14px;
+    border-radius: 50%;
+    display: none;
+} 

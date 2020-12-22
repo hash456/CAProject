@@ -1,0 +1,270 @@
+﻿@{
+    ViewData["Title"] = "Product Page";
+    Product product = (Product)ViewData["product"];
+    List<Review> reviews = (List<Review>)ViewData["reviews"];
+    int numReviews = (int)ViewData["numReviews"];
+    double avgScore = (double)ViewData["avgScore"];
+    int stockCount = (int)ViewData["stockCount"];
+    int numSold = (int)ViewData["numSold"];
+    List<double> TReviews = (List<double>)ViewData["TopReviews"];
+    Dictionary<double, Product> pRatingLookup = (Dictionary<double, Product>)ViewData["PDictionary"];
+}
+
+<link href="~/css/StarRating.css" rel="stylesheet" type="text/css" />
+
+<style>
+    .div1 {
+        width: 250px;
+        height: 150px;
+        padding: 20px;
+        border: 1px solid grey;
+    }
+
+    .checked {
+        color: orange;
+    }
+
+    textarea {
+        white-space: normal;
+        text-align: justify;
+    }
+</style>
+
+<table style="width: 100%">
+    <colgroup>
+        <col span="1" style="width: 30%;">
+        <col span="1" style="width: 50%;">
+        <col span="1" style="width: 20%;">
+    </colgroup>
+    <tr>
+        <td style="vertical-align:middle; padding:20px"><img src=@product.Image width="300" /></td>
+        <td style="padding:20px">
+            <p style="font-size: 20px"><b>@product.Name</b></p>
+            <p style="font-size: 14px">
+                Platform: @product.Platform <br>
+                <span id="star_one" class=""></span>
+                <span id="star_two" class=""></span>
+                <span id="star_three" class=""></span>
+                <span id="star_four" class=""></span>
+                <span id="star_five" class=""></span>
+                |  @numReviews Ratings  |  @numSold Sold
+
+            </p>
+            <hr />
+            <p style="font-size: 16px">
+                <b>Price: </b>$@product.Price <br />
+                @if (stockCount > 0)
+                {
+                    <span style="color:forestgreen">Available</span>
+                }
+                else
+                {
+                    <span style="color:red">Not Available</span>
+                }
+                <br /><br />
+                <b>Product Description:</b>
+                <br />
+                <span style="font-size: 14px">
+                    @product.Description
+                </span>
+            </p>
+        </td>
+        <td style="vertical-align:top; padding:10px">
+            <form id="AddtoCart" product_id="@product.Id" class="div1">
+                Quantity: <input type="number" id="quantity" name="quantity" value="1" min="1" max="@stockCount" style="font-size: 12px; width:60px" />
+                <br /><br />
+                <button type="submit" style="background-color:darkslategrey; color:floralwhite; border:none">
+                    <i class="fa fa-shopping-cart"></i> Add to Cart
+                </button>
+            </form>
+
+        </td>
+    </tr>
+</table>
+<hr style="background-color:dimgrey" />
+
+<p style="font-size: 20px"><b>You might also like</b></p>
+    <div>
+        @foreach (double rating in TReviews)
+            {
+                if (pRatingLookup[rating].Id != product.Id)
+                    {
+                    <div style="float:left; margin:10px">
+                        <div style="float:left; margin: 5px">
+                            <img src=@pRatingLookup[rating].Image width="40" height="40" />
+                        </div>
+                        <table>
+                            <tr>
+                                <td><a href="@Url.Action("Index", "ProductPg", new { productid = pRatingLookup[rating].Id })">@pRatingLookup[rating].Name</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @for (int i = 0; i < 5; i++)
+                                    {
+                                        if (rating - i >= 1)
+                                        {
+                                            <span class="fa fa-star checked"></span>
+                                        }
+                                        else if (rating - i < 1 && rating - i > 0)
+                                        {
+                                            <span class="fa fa-star-half-o checked"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="fa fa-star"></span>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                }
+            }
+    </div>
+<br />
+
+<div style="height:50px"></div>
+<p style="font-size: 20px"><b>Reviews</b></p>
+<br />
+
+
+@if (ViewData["SessionId"] == null)
+{
+    <h4>Login to leave a review</h4>
+}
+else
+{
+    <form method="POST" action="/SubmitReviews/Index">
+        <input type="hidden" name="productid" value="@product.Id" />
+        <span for="rating">Your Rating:</span>
+
+        <div class="start-container">
+            <div class="star-widget">
+                <input type="radio" name="rating" id="rate-5" value="5">
+                <label for="rate-5" class="fa fa-star"></label>
+                <input type="radio" name="rating" id="rate-4" value="4">
+                <label for="rate-4" class="fa fa-star"></label>
+                <input type="radio" name="rating" id="rate-3" value="3">
+                <label for="rate-3" class="fa fa-star"></label>
+                <input type="radio" name="rating" id="rate-2" value="2">
+                <label for="rate-2" class="fa fa-star"></label>
+                <input type="radio" name="rating" id="rate-2" value="1">
+                <input type="radio" name="rating" id="rate-1">
+                <label for="rate-1" class="fa fa-star"></label>
+            </div>
+        </div>
+        <br />
+        <br />
+        <textarea id="review" name="review" rows="10" cols="60" maxlength="1000" placeholder="Your Review..."></textarea>
+        <br />
+        <button class="btn btn-primary" type="submit">Submit Review</button>
+    </form>
+}
+<br />
+
+
+@foreach (Review rev in reviews)
+{
+
+    <p style="font-size: 14px">
+
+        @rev.UserName
+        <br />
+        @for (int i = 0; i < rev.Rating; i++)
+        {
+            <span class="fa fa-star checked"></span>
+        }
+        @for (int i = 0; i < 5 - rev.Rating; i++)
+        {
+            <span class="fa fa-star"></span>
+        }
+        <br />
+        <span style="color:grey">@rev.DateReviewed</span>
+        <br />
+        @rev.MainReview
+    </p>
+    <br />
+}
+<script>
+    window.onload = function () {
+        let elem = document.getElementById("AddtoCart");
+        elem.addEventListener("submit", AddtoCart);
+
+        // For average rating only
+        document.getElementById("star_one").className
+        += @avgScore >= 1 ? "fa fa-star checked" : @avgScore >= 0.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
+
+        document.getElementById("star_two").className
+        += @avgScore >= 2 ? "fa fa-star checked" : @avgScore >= 1.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
+
+        document.getElementById("star_three").className
+        += @avgScore >= 3 ? "fa fa-star checked" : @avgScore >= 2.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
+
+        document.getElementById("star_four").className
+        += @avgScore >= 4 ? "fa fa-star checked" : @avgScore >= 3.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
+
+        document.getElementById("star_five").className
+        += @avgScore >= 5 ? "fa fa-star checked" : @avgScore >= 4.5
+            ? "fa fa-star-half-o checked"
+                : "fa fa-star";
+    }
+
+    function AddtoCart(event)
+    {
+        var quantity = document.getElementById("quantity").value;
+        var productId = event.currentTarget.getAttribute("product_id");
+        var stockcount = @stockCount;
+        console.log(quantity, productId);
+
+        if (stockcount == 0) {
+            alert("Product is not available.")
+        }
+        else if (quantity >= 1 && quantity <= @stockCount) {
+            SendToCart(productId, quantity);
+        }
+
+        event.preventDefault();
+        return false;
+    }
+
+    function SendToCart(productId, quantity) {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "/ShoppingCart/UpdateCart");
+        xhr.setRequestHeader("Content-Type", "application/json; charset=utf8");
+
+        xhr.onreadystatechange = function () {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                // receive response from server
+                if (this.status === 200 || this.status === 302) {
+                    let data = JSON.parse(this.responseText);
+
+                    if (this.status === 200 && data.status == "success") {
+                        console.log("Successful operation: " + data.status);
+                        alert(data.message);
+                        location.reload();
+                    }
+                    else {
+                        // Redirect user to login page if user not yet login
+                        window.location.assign(window.location.href + "Login/Index");
+                    }
+                }
+            }
+        };
+
+        xhr.send(JSON.stringify({
+            ProductId: parseInt(productId),
+            Quantity: parseInt(quantity)
+        }));
+    }
+
+</script>
+

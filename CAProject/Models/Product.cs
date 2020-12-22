@@ -12,20 +12,21 @@ namespace CAProject.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(35)]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         [MaxLength(1000)]
         public string Description { get; set; }
 
         [Required]
-        [MaxLength(128)]
+        [MaxLength(1000)]
         public string Image { get; set; }
 
         [Required]
         public double Price { get; set; }
 
         [Required]
-        public int StockCount { get; set; }
+        [MaxLength(30)]
+        public string Platform { get; set; }
     }
 }
